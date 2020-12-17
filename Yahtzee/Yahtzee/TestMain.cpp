@@ -5,8 +5,8 @@
 #include "Die.h"
 
 #include <gtest\gtest.h>
-#include "DieTest.h"
-#include "DiceTest.h"
+#include ".\Tests\DieTest.h"
+#include ".\Tests\DiceTest.h"
 
 int main()
 {
