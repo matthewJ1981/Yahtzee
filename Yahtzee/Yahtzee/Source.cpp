@@ -2,18 +2,11 @@
 #include <vector>
 
 #include <algorithm>
+#include "Die.h"
 
-
-class Die
-{
-public:
-	Die(int s) : sides(s), value(1) {}
-	void Roll() { value = rand() % (sides - 1) + 1; }
-	int Value() const { return value; }
-private:
-	int value;
-	int sides;
-};
+#include <gtest\gtest.h>
+#include "DieTest.h"
+#include "DiceTest.h"
 
 class Category
 {
@@ -300,18 +293,14 @@ private:
 	std::vector<Player> players;
 };
 
-
-
-
-
-
-
-
 int main()
 {
-	Game game;
-	game.GetPlayers();
-	game.Play();
+	testing::InitGoogleTest();
+	return RUN_ALL_TESTS();
 
-	std::cin.get();
+	//Game game;
+	//game.GetPlayers();
+	//game.Play();
+	//
+	//std::cin.get();
 }
