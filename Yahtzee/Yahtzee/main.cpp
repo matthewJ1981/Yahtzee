@@ -43,7 +43,8 @@ int main()
 #include <gtest\gtest.h>
 #include ".\Tests\DieTest.h"
 #include ".\Tests\DiceTest.h"
-#include ".\Tests\CategoryTest.h"
+#include ".\Tests\LowerCategoryTest.h"
+#include ".\Tests\UpperCategoryTest.h"
 #include ".\Tests\UpperSectionTest.h"
 #include ".\Tests\LowerSectionTest.h"
 

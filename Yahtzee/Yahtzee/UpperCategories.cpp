@@ -15,3 +15,28 @@ int Ones::CheckScore(const Dice& dice) const
 
 	return score;
 }
+
+int Twos::CheckScore(const Dice& dice) const
+{
+	return 0;
+}
+
+int Threes::CheckScore(const Dice& dice) const
+{
+	return 0;
+}
+
+int Fours::CheckScore(const Dice& dice) const
+{
+	return 0;
+}
+
+int Fives::CheckScore(const Dice& dice) const
+{
+	return 0;
+}
+
+int Sixes::CheckScore(const Dice& dice) const
+{
+	return 0;
+}
