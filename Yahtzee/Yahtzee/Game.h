@@ -1,26 +1,47 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
-
 #include "Player.h"
+#include "Dice.h"
 
 class Game
 {
 public:
-	Game()
+	enum state
 	{
-	}
-	void Play()
-	{
-		for (int i = 0; i < 13; ++i)
-			for (size_t j = 0; j < players.size(); ++j)
-				players[j].TakeTurn();
-	}
-	void GetPlayers()
-	{
-		players.push_back({ "Bob" });
-		players.push_back({ "Tim" });
-	}
+		ROLLING,
+		ROLLED,
+		HOLD,
+		SCORE
+	};
+
+	Game();
+	void Input();
+	void Update();
+	void Draw();
+	void GetPlayers();
+	void ResetDice();
+	bool GameOver();
+
+	bool PlayerScored() { return playerScored; }
+
+	void IncrementRound() { currentRound++; playerScored = false; }
+	int CurrentRound() { return currentRound; }
+
+	void IncrementPlayer() { currentPlayer++; if (currentPlayer > (int)players.size() - 1) currentPlayer = 0; }
+	int CurrentPlayer() { return currentPlayer; }
+
 private:
 	std::vector<Player> players;
+	int roundCount;
+	int state = ROLLING;
+	bool playing = true;
+	bool playerScored = false;
+	int currentRound;
+	int currentPlayer;
+	Dice readyDice;
+	Dice heldDice;
+	std::vector<int> diceToHold;
+
 };

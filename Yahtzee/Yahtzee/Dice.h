@@ -1,15 +1,20 @@
 #pragma once
 #include <vector>
-#include <algorithm>
 #include "Die.h"
+#include <iostream>
 
 class Dice
 {
 public:
 	void AddDice(int s);
 	void RemoveDice(int);
-	std::vector<Die> Roll();
+	void Roll();
+	static Dice YahtzeeDice();
+	const std::vector<int> Values() const;
+	friend std::ostream& operator<< (std::ostream& out, const Dice& dice);
+	void Clear();
 private:
 	std::vector<Die> dice;
 };
+
 

@@ -1,5 +1,5 @@
 #include "Player.h"
-#include <iostream> // Temporary *****************************************************
+#include "Dice.h"
 
 Player::Player(std::string n) : name(n), numDice(5)
 {
@@ -8,30 +8,27 @@ Player::Player(std::string n) : name(n), numDice(5)
 
 void Player::TakeTurn()
 {
-	std::cout << name << "'s turn\n";
-	for (int i = 0; i < 3; ++i)
-	{
-		RollDice();
-		//HoldDie(2);
-		scorecard.CheckScore(readyDice);
-	}
+	//readyDice = Dice::YahtzeeDice();
+	//for (int i = 0; i < 3; ++i)
+	//{
+	//	readyDice.Roll(); 
+	//	GetInput();
+	//	//RollDice();
+	//	//HoldDie(2);
+	//	scorecard.CheckScore(readyDice);
+	//}
 
-	ResetDice();
+	//ResetDice();
 }
 
-void Player::RollDice()
+void Player::RollDice(Dice& dice)
 {
-	for (size_t i = 0; i < readyDice.size(); ++i)
-		readyDice[i].Roll();
-
-	for (size_t i = 0; i < readyDice.size(); ++i)
-		std::cout << readyDice[i].Value() << ", ";
-	std::cout << "\n";
+	dice.Roll();
 }
 
 bool Player::HoldDie(int die)
 {
-	if (die - 1 < 0 || die - 1 > numDice)
+	/*if (die - 1 < 0 || die - 1 > numDice)
 		return false;
 
 	heldDice.push_back(readyDice[die - 1]);
@@ -44,14 +41,15 @@ bool Player::HoldDie(int die)
 		std::cout << heldDice[i].Value() << ", ";
 	std::cout << "\n";
 
+	return true;*/
 	return true;
 }
 
 void Player::ResetDice()
 {
-	readyDice.clear();
-	heldDice.clear();
+	//readyDice.clear();
+	//heldDice.clear();
 
-	for (int i = 0; i < numDice; ++i)
-		readyDice.push_back({ 6 });
+	//for (int i = 0; i < numDice; ++i)
+	//	readyDice.push_back({ 6 });
 }

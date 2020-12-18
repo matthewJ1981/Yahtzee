@@ -1,76 +1,99 @@
-//#include "Game.h"
-//#include <iostream>
-//#include <random>
-//void Game::Intro()
-//{
-//	std::cout << "Welcome to Yahtzee.\n";
-//	char selection = Input("Solo (1) or Muiltplayer (2): ", { '1', '2' });
-//
-//	if (selection == '1')
-//	{	
-//		AddPlayers(1);
-//
-//		char selection = Input("Would you like to play against a computer opponent ? (y / n) : ", { 'Y', 'y', 'N', 'n' });
-//		if (selection == 'Y' || selection == 'y')
-//			_comOpponent = true;
-//		else
-//			_comOpponent = false;
-//
-//		std::cerr << "ComOpp " << _comOpponent << "\n";
-//	}
-//	else
-//	{
-//		AddPlayers((int)Input("How many players? (2 - 4) : ", { '2', '3', '4' }) - 48);
-//	}
-//}
-//
-//char Game::Input(std::string msg, std::vector<char> validInputs) const
-//{
-//	while (true)
-//	{
-//		std::cout << msg;
-//		char selection;
-//		std::cin >> selection;
-//		std::cin.ignore(1000, '\n');
-//
-//		for (size_t i = 0; i < validInputs.size(); ++i)
-//		{
-//			if (selection == validInputs[i])
-//				return selection;
-//		}
-//
-//		std::cout << "Invalid Input\n";
-//	}
-//}
-//
-//void Game::AddPlayers(int numPlayers)
-//{
-//	for (int i = 1; i <= numPlayers; ++i)
-//	{
-//		std::cout << "Enter player " << i << " name: ";
-//		std::string name;
-//		std::cin >> name;
-//		_players.emplace_back(name);
-//	}
-//}
-//
-//void Game::HighRoll()
-//{
-//	for (size_t i = 0; i < _players.size(); ++i)
-//	{
-//		;
-//	}
-//}
-//
-//int Game::Roll()
-//{
-//	std::random_device rd;
-//	std::mt19937 rng(rd());
-//	std::uniform_int_distribution<int> dist(1, 6);
-//	
-//	return dist(rng);
-//	//for (int i = 0; i < numDice; ++i)
-//	//{
-//	//	std::cout << dist(rng);
-//	//}
-//}
+#include "Game.h"
+#include "ScoreCard.h"
+
+Game::Game() :
+	roundCount(13),
+	playing(true),
+	currentRound(1),
+	currentPlayer(0)
+{
+}
+
+void Game::Input()
+{
+	if (state == ROLLING)
+	{
+
+	}
+	else if (state == ROLLED)
+	{
+		//After dice roll, choose hold[1] or score[2]
+		int input = 1;
+
+		if (input == 1)
+		{
+			state = HOLD;
+			diceToHold.push_back(2);
+			diceToHold.push_back(3);
+		}
+		else
+		{
+			state = SCORE;
+		}
+	}
+	else if (state == HOLD)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+
+void Game::Update()
+{
+
+	if (state == ROLLING)
+	{
+		ResetDice();
+		players[currentPlayer].RollDice(readyDice);
+		players[currentPlayer].CheckScore();
+		//std::cout << players[j].Name() << "'s turn.\n";
+		//players[j].TakeTurn();
+		state = ROLLED;
+	}
+	else if (state == HOLD)
+	{
+		
+	}
+	else
+	{
+		currentRound++;
+	}
+}
+
+void Game::Draw()
+{
+	if (state == ROLLED)
+	{
+		std::cout << "ReadyDice: " << readyDice << "\n";
+		std::cout << "HeldDice: " << heldDice << "\n";
+
+		std::cout << "Choose dice to hold[1] or score[2]";
+	}
+	else if (state == HOLD)
+	{
+		std::cout << "Enter the numbers of the dice to hold: ";
+	}
+	else
+	{
+
+	}
+}
+
+bool Game::GameOver()
+{
+	//evaluate score and determine winner
+	return currentRound > 13; // temporary
+}
+void Game::GetPlayers()
+{
+	players.push_back({ "Bob" });
+	players.push_back({ "Tim" });
+}
+void Game::ResetDice()
+{
+	readyDice = Dice::YahtzeeDice();
+	heldDice.Clear();
+}
