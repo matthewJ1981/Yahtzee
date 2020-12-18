@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Dice.h"
+#include "../Dice.h"
 #include <gtest/gtest.h>
 
 TEST(DiceTest, DefaultConstructorTest)

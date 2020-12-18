@@ -3,13 +3,14 @@
 class Die
 {
 public:
-	Die() : sides(6), value(1) {}
-	Die(int s) : sides(s), value(1) {}
+	Die(int sides = 6, int val = 1) : sides(sides), value(val) {}
 
 	void Roll() { value = rand() % (sides - 1) + 1; }
 
 	int Value() const { return value; }
 	int Sides() const { return sides; }
+
+	void SetValue(int v) { value = v; }
 private:
 	int value;
 	int sides;

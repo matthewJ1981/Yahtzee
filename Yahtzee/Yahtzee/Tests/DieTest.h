@@ -1,7 +1,7 @@
 #pragma once
 
 #include <gtest/gtest.h>
-#include "Die.h"
+#include "../Die.h"
 
 TEST(DieTest, DefaultConstructorTest)
 {

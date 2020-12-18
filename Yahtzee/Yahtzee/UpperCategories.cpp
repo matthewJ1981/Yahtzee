@@ -8,9 +8,9 @@ int Ones::CheckScore(const Dice& dice) const
 		return -1;
 
 	int score = 0;
-	std::for_each(dice.GetDice().begin(), dice.GetDice().end(), [&](const Die& die) {if (die.Value() == 1) ++score; });
 
-	//std::cout << "Score: " << score << "\n";
-	//std::cout << "Score: " << this->score << "\n";
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 1) ++score; });
+
 	return score;
 }

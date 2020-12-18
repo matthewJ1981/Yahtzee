@@ -7,9 +7,9 @@ Dice::Dice(int numDice, int sides)
 	for (int i = 0; i < numDice; ++i)
 		dice.push_back(sides);
 }
-void Dice::AddDice(int sides)
+void Dice::AddDice(int sides, int value)
 {
-	dice.push_back(sides);
+	dice.push_back({ sides, value });
 }
 
 void Dice::RemoveDice(int index)

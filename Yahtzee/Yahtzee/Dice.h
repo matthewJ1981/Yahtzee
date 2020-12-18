@@ -9,7 +9,7 @@ public:
 	Dice() {};
 	Dice(int numDice, int sides = 6);
 
-	void AddDice(int sides = 6);
+	void AddDice(int sides = 6, int value = 1);
 	void RemoveDice(int index);
 	void Roll();
 
