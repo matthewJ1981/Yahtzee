@@ -1,6 +1,7 @@
+#include <algorithm>
 #include "Section.h"
 
-std::vector<std::pair<Category*, int>> Section::CheckScores(const std::vector<Die>& dice)
+std::vector<std::pair<Category*, int>> Section::CheckScores(const Dice& dice)
 {
 	std::vector<std::pair<Category*, int>> scoringCategories;
 
@@ -12,4 +13,9 @@ std::vector<std::pair<Category*, int>> Section::CheckScores(const std::vector<Di
 	}
 
 	return scoringCategories;
+}
+
+void Section::CalcSubTotal()
+{
+	std::for_each(categories.begin(), categories.end(), [this](const Category* category) {subtotal += category->Score(); });
 }

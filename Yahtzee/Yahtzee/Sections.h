@@ -10,6 +10,9 @@ public:
 	{
 		categories.push_back(new Ones("Ones"));
 	}
+
+	int Tally() override;
+private:
 };
 
 class Lower : public Section
@@ -19,5 +22,6 @@ public:
 	{
 		//categories.push_back(new Ones());
 	};
+	int Tally() override;
 };
 

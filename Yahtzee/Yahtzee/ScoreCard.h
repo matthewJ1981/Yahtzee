@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Section.h"
+#include <vector>
 #include "Sections.h"
 
 class ScoreCard
@@ -11,10 +11,10 @@ public:
 		upper = new Upper();
 		lower = new Lower();
 	}
-	void CheckScore(const std::vector<Die>& dice);
+	std::vector<std::pair<Category*, int>> CheckScore(const Dice& dice) const;
+
+	int Tally();
 private:
-	//CheckScore();
-	//Tally() { total = upper + lower; return total; }
 	Section* upper;
 	Section* lower;
 	int total;

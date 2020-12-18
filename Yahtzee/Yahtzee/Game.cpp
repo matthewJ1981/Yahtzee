@@ -48,7 +48,7 @@ void Game::Update()
 	{
 		ResetDice();
 		players[currentPlayer].RollDice(readyDice);
-		players[currentPlayer].CheckScore();
+		//players[currentPlayer].CheckScore();
 		//std::cout << players[j].Name() << "'s turn.\n";
 		//players[j].TakeTurn();
 		state = ROLLED;
@@ -67,8 +67,8 @@ void Game::Draw()
 {
 	if (state == ROLLED)
 	{
-		std::cout << "ReadyDice: " << readyDice << "\n";
-		std::cout << "HeldDice: " << heldDice << "\n";
+		//std::cout << "ReadyDice: " << readyDice << "\n";
+		//std::cout << "HeldDice: " << heldDice << "\n";
 
 		std::cout << "Choose dice to hold[1] or score[2]";
 	}
@@ -94,6 +94,8 @@ void Game::GetPlayers()
 }
 void Game::ResetDice()
 {
-	readyDice = Dice::YahtzeeDice();
+	readyDice.Clear();
+	for (int i = 0; i < 5; ++i)
+		readyDice.AddDice();
 	heldDice.Clear();
 }

@@ -1,43 +1,45 @@
 #include "Dice.h"
 #include <algorithm>
-void Dice::AddDice(int s)
+#include <assert.h>
+
+Dice::Dice(int numDice, int sides)
 {
-	dice.push_back(s);
+	for (int i = 0; i < numDice; ++i)
+		dice.push_back(sides);
+}
+void Dice::AddDice(int sides)
+{
+	dice.push_back(sides);
 }
 
-void Dice::RemoveDice(int i)
+void Dice::RemoveDice(int index)
 {
-	if (i < 0 || i >= dice.size())
-		throw std::exception("Index out of bounds");
-	dice.erase(dice.begin() + i);
+	assert(index >= 0 && index < dice.size());
+
+	dice.erase(dice.begin() + index);
 }
 
 void Dice::Roll()
 {
 	std::for_each(dice.begin(), dice.end(), [](Die& die) { die.Roll(); });
 }
-
-Dice Dice::YahtzeeDice()
-{
-	Dice dice;
-	for(int i = 0; i < 5; ++i)
-		dice.AddDice(6);
-	return dice;
-}
-
-const std::vector<int> Dice::Values() const
-{
-	std::vector<int> values;
-	for (const Die& d : dice)
-		values.push_back(d.Value());
-	return values;
-}
+//
+//const std::vector<int> Dice::Values() const
+//{
+//	std::vector<int> values;
+//
+//	for (const Die& d : dice)
+//		values.push_back(d.Value());
+//
+//	return values;
+//}
 
 void Dice::Clear()
 {
 	dice.clear();
 }
 
+/*
 std::ostream& operator<<(std::ostream& out, const Dice& d)
 {
 	for (const int& i : d.Values())
@@ -47,3 +49,4 @@ std::ostream& operator<<(std::ostream& out, const Dice& d)
 
 	return out;
 }
+*/

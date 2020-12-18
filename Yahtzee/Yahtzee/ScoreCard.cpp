@@ -6,7 +6,8 @@
 #include "Category.h"
 
 #include <iostream> // temporary. ******************************************************
-void ScoreCard::CheckScore(const std::vector<Die>& dice)
+
+std::vector<std::pair<Category*, int>> ScoreCard::CheckScore(const Dice& dice) const
 {
 	// Check scoring options
 	std::vector<std::pair<Category*, int>>upperScoringCategories = upper->CheckScores(dice);
@@ -16,6 +17,8 @@ void ScoreCard::CheckScore(const std::vector<Die>& dice)
 	std::move(upperScoringCategories.begin(), upperScoringCategories.end(), std::back_inserter(scoringCategories));
 	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
 
+	return scoringCategories;
+	/*
 	// Output options
 	for (auto category : scoringCategories)
 		std::cout << category.first->Name() << ": " << category.second << "\n";
@@ -30,5 +33,10 @@ void ScoreCard::CheckScore(const std::vector<Die>& dice)
 	{
 		std::pair<Category*, int> selection = scoringCategories[input];
 		selection.first->SetScore(selection.second);
-	}
+	}*/
+}
+
+int ScoreCard::Tally()
+{
+	return upper->Tally() + lower->Tally();
 }

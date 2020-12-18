@@ -3,18 +3,40 @@
 #include <gtest/gtest.h>
 #include "Die.h"
 
-TEST(DieTest, DefaultTest)
+TEST(DieTest, DefaultConstructorTest)
 {
-	Die die(6);
-	EXPECT_EQ(6, die.Sides());
-	EXPECT_EQ(1, die.Value());
+	int sides = 6;
+	int value = 1;
+
+	Die die;
+
+	EXPECT_EQ(die.Sides(), sides);
+	EXPECT_EQ(die.Value(), value);
+}
+
+
+TEST(DieTest, ConstructorTest)
+{
+	int sides = 8;
+	int value = 1;
+
+	Die die(sides);
+
+	EXPECT_EQ(die.Sides(), sides);
+	EXPECT_EQ(die.Value(), value);
 }
 
 TEST(DieTest, RollTest)
 {
-	Die die(6);
+	int sides = 6;
+	int value = 1;
+	int minValue = 1;
+	int maxValue = sides;
+
+	Die die(sides);
 	die.Roll();
-	EXPECT_EQ(6, die.Sides());
-	EXPECT_GE(die.Value(), 1);
-	EXPECT_LE(die.Value(), 6);
+
+	EXPECT_EQ(die.Sides(), sides);
+	EXPECT_GE(die.Value(), minValue);
+	EXPECT_LE(die.Value(), maxValue);
 }
