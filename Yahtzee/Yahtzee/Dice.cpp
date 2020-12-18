@@ -7,6 +7,7 @@ Dice::Dice(int numDice, int sides)
 	for (int i = 0; i < numDice; ++i)
 		dice.push_back(sides);
 }
+
 void Dice::AddDice(int sides, int value)
 {
 	dice.push_back({ sides, value });
@@ -23,7 +24,13 @@ void Dice::Roll()
 {
 	std::for_each(dice.begin(), dice.end(), [](Die& die) { die.Roll(); });
 }
-//
+
+void Dice::Clear()
+{
+	dice.clear();
+}
+
+
 //const std::vector<int> Dice::Values() const
 //{
 //	std::vector<int> values;
@@ -33,20 +40,14 @@ void Dice::Roll()
 //
 //	return values;
 //}
-
-void Dice::Clear()
-{
-	dice.clear();
-}
-
-/*
-std::ostream& operator<<(std::ostream& out, const Dice& d)
-{
-	for (const int& i : d.Values())
-	{
-		out << i << " ";
-	}
-
-	return out;
-}
-*/
+//
+//
+//std::ostream& operator<<(std::ostream& out, const Dice& d)
+//{
+//	for (const int& i : d.Values())
+//	{
+//		out << i << " ";
+//	}
+//
+//	return out;
+//}

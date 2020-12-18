@@ -1,6 +1,7 @@
 #include "UpperCategories.h"
 
 #include <algorithm>
+#include <vector>
 
 int Ones::CheckScore(const Dice& dice) const
 {

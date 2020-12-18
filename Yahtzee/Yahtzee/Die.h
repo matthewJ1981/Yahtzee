@@ -1,11 +1,11 @@
 #pragma once
-#include <cstdlib>
+
 class Die
 {
 public:
 	Die(int sides = 6, int val = 1) : sides(sides), value(val) {}
 
-	void Roll() { value = rand() % (sides - 1) + 1; }
+	void Roll();
 
 	int Value() const { return value; }
 	int Sides() const { return sides; }
