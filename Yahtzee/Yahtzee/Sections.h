@@ -23,6 +23,8 @@ public:
 	{
 		categories.push_back(new ThreeOfKind("Three of a Kind"));
 	};
+	void IncrementBonus() { bonus += 100; }
 	int Tally() override;
 };
+
 

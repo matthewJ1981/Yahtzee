@@ -45,6 +45,7 @@ int main()
 #include ".\Tests\DiceTest.h"
 #include ".\Tests\CategoryTest.h"
 #include ".\Tests\UpperSectionTest.h"
+#include ".\Tests\LowerSectionTest.h"
 
 int main()
 {
