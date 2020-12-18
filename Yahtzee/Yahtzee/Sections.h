@@ -25,6 +25,10 @@ public:
 	};
 	void IncrementBonus() { bonus += 100; }
 	int Tally() override;
+	bool BonusEligibile() const { return bonusEligible; }
+	void SetBonusEligible(bool b) { bonusEligible = b; }
+private:
+	bool bonusEligible = false;
 };
 
 

@@ -14,6 +14,7 @@ TEST(LowerSectionTest, ConstructorTest)
 	EXPECT_EQ(lower->Total(), 0);
 	EXPECT_EQ(lower->Size(), 1);
 	EXPECT_EQ(lower->CheckScores(dice).size(), 1);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
 }
 
 TEST(LowerSectionTest, SetScoreTest)
@@ -31,6 +32,7 @@ TEST(LowerSectionTest, SetScoreTest)
 	EXPECT_EQ(lower->Total(), 0);
 	EXPECT_EQ(lower->Size(), 1);
 	EXPECT_EQ(lower->CheckScores(dice).size(), 0);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
 }
 
 TEST(LowerSectionTest, CalcSubTotalTest)
@@ -49,6 +51,7 @@ TEST(LowerSectionTest, CalcSubTotalTest)
 	EXPECT_EQ(lower->Total(), 0);
 	EXPECT_EQ(lower->Size(), 1);
 	EXPECT_EQ(lower->CheckScores(dice).size(), 0);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
 }
 
 TEST(LowerSectionTest, TallyTest)
@@ -68,6 +71,7 @@ TEST(LowerSectionTest, TallyTest)
 	EXPECT_EQ(lower->Total(), score);
 	EXPECT_EQ(lower->Size(), 1);
 	EXPECT_EQ(lower->CheckScores(dice).size(), 0);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
 }
 
 TEST(LowerSectionTest, IncrementBonusTest)
@@ -91,4 +95,25 @@ TEST(LowerSectionTest, IncrementBonusTest)
 	EXPECT_EQ(lower->Total(), bonus + score);
 	EXPECT_EQ(lower->Size(), 1);
 	EXPECT_EQ(lower->CheckScores(dice).size(), 0);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
+}
+
+TEST(LowerSectionTest, SetBonusEligibleTest)
+{
+	int score = 80;
+	int bonus = 100;
+
+	Section* lower = new Lower();
+	Dice dice; //5 6-sided dice, all value 1
+
+	Lower* lowPointer = static_cast<Lower*>(lower);
+
+	lowPointer->SetBonusEligible(true);
+
+	EXPECT_EQ(lower->SubTotal(), 0);
+	EXPECT_EQ(lower->Bonus(), 0);
+	EXPECT_EQ(lower->Total(), 0);
+	EXPECT_EQ(lower->Size(), 1);
+	EXPECT_EQ(lower->CheckScores(dice).size(), 1);
+	EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), true);
 }
