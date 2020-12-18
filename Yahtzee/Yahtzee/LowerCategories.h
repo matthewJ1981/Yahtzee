@@ -4,10 +4,10 @@
 
 #include "Category.h"
 
-class Ones : public Category
+class ThreeOfKind : public Category
 {
 public:
-	Ones(std::string n) : Category(n) {}
+	ThreeOfKind(std::string n) : Category(n) {}
 	int CheckScore(const Dice& dice) const override;
 private:
 

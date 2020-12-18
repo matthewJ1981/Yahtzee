@@ -2,6 +2,7 @@
 
 #include "Section.h"
 #include "UpperCategories.h"
+#include "LowerCategories.h"
 
 class Upper : public Section
 {
@@ -20,7 +21,7 @@ class Lower : public Section
 public:
 	Lower()
 	{
-		//categories.push_back(new Ones());
+		categories.push_back(new ThreeOfKind("Three of a Kind"));
 	};
 	int Tally() override;
 };

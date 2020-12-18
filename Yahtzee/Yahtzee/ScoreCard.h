@@ -11,7 +11,7 @@ public:
 		upper = new Upper();
 		lower = new Lower();
 	}
-	std::vector<std::pair<Category*, int>> CheckScore(const Dice& dice) const;
+	std::vector<std::tuple<int, int, std::string>> CheckScore(const Dice& dice) const;
 
 	int Tally();
 private:

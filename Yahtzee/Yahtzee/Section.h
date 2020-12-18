@@ -1,6 +1,10 @@
 #pragma once
+
 #include <vector>
+#include <tuple>
+
 #include "Category.h"
+
 
 class Section
 {
@@ -8,16 +12,13 @@ public:
 	Section() : subtotal(0), bonus(0), total(0) {}
 	virtual ~Section() {};
 
-	const std::vector<Category*> Categories() { return categories; }
-	std::vector<std::pair<Category*, int>> CheckScores(const Dice& dice);
-
-	//void SetSubTotal(int st) { subtotal = st; }
-	//void SetBonus(int b) { bonus = b; }
-	//void SetTotal(int t) { total = t; }
+	std::vector<std::tuple<int, int, std::string>> CheckScores(const Dice& dice) const;
 
 	int SubTotal() const { return subtotal; }
 	int Bonus() const { return bonus; }
 	int Total() const { return total; }
+	int Size() const { return (int)categories.size(); }
+	void SetScore(int index, int score);
 
 	void CalcSubTotal();
 	virtual int Tally() = 0;
