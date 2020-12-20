@@ -10,17 +10,26 @@ int Upper::Tally()
 	return total;
 }
 
+int Lower::Tally()
+{
+	CalcSubTotal();
+	total = subtotal + bonus;
+	return total;
+}
+
+// This overridden method exists to enforce scoring options on successive yahtzees
 std::vector<std::pair<int, std::string>> Lower::CheckScores(const Dice& dice, std::vector<std::pair<int, std::string>> upperCategories) const
 {
 	std::vector<std::pair<int, std::string>> scores = Section::CheckScores(dice);
 
+	// Currently rolled a yahtzee
 	if (scores[5].first == 50)
 	{
-		if (categories[5]->Score() == 50)
-		{
+		// Already scored a yahtzee so show bonus as scoring option
+		if (categories[5]->Score() == 50)	
 			scores.push_back(std::make_pair(100, "Bonus"));
-		}
 
+		//Force scoring of upper section or allow options of lower per joker rules
 		if (categories[5]->Score() == 50 || categories[5]->Score() == 0)
 		{
 			int upperIndex = dice.GetDice()[0].Value() - 1;
@@ -50,11 +59,4 @@ std::vector<std::pair<int, std::string>> Lower::CheckScores(const Dice& dice, st
 	}
 
 	return scores;
-}
-
-int Lower::Tally()
-{
-	CalcSubTotal();
-	total = subtotal + bonus;
-	return total;
 }
