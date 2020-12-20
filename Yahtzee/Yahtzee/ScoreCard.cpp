@@ -7,13 +7,13 @@
 
 #include <iostream> // temporary. ******************************************************
 
-std::vector<std::tuple<int , int , std::string>> ScoreCard::CheckScore(const Dice& dice) const
+std::vector<std::pair<int , std::string>> ScoreCard::CheckScore(const Dice& dice) const
 {
 	// Check scoring options
-	std::vector<std::tuple<int, int, std::string>> upperScoringCategories = upper->CheckScores(dice);
-	std::vector<std::tuple<int, int, std::string>> lowerScoringCategories = lower->CheckScores(dice);
+	std::vector<std::pair<int, std::string>> upperScoringCategories = upper.CheckScores(dice);
+	std::vector<std::pair<int, std::string>> lowerScoringCategories = lower.CheckScores(dice, upperScoringCategories);
 
-	std::vector<std::tuple<int, int, std::string>> scoringCategories;
+	std::vector<std::pair<int, std::string>> scoringCategories;
 	std::move(upperScoringCategories.begin(), upperScoringCategories.end(), std::back_inserter(scoringCategories));
 	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
 
@@ -38,5 +38,5 @@ std::vector<std::tuple<int , int , std::string>> ScoreCard::CheckScore(const Dic
 
 int ScoreCard::Tally()
 {
-	return upper->Tally() + lower->Tally();
+	return upper.Tally() + lower.Tally();
 }

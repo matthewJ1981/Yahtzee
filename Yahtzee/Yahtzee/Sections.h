@@ -12,6 +12,7 @@ public:
 		categories.push_back(new Ones("Ones"));
 	}
 
+	//std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice) const override;
 	int Tally() override;
 private:
 };
@@ -27,6 +28,8 @@ public:
 	int Tally() override;
 	bool BonusEligibile() const { return bonusEligible; }
 	void SetBonusEligible(bool b) { bonusEligible = b; }
+	/*std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice) const override*/
+	std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice, std::vector<std::pair<int, std::string>> upperCategories) const;
 private:
 	bool bonusEligible = false;
 };

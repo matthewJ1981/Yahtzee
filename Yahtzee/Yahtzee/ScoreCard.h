@@ -6,16 +6,17 @@
 class ScoreCard
 {
 public:
-	ScoreCard() : upper(nullptr), lower(nullptr), total(0)
+	//ScoreCard() : upper(nullptr), lower(nullptr), total(0)
+	ScoreCard() : total(0)
 	{
-		upper = new Upper();
-		lower = new Lower();
+		//upper = new Upper();
+		//lower = new Lower();
 	}
-	std::vector<std::tuple<int, int, std::string>> CheckScore(const Dice& dice) const;
+	std::vector<std::pair<int, std::string>> CheckScore(const Dice& dice) const;
 
 	int Tally();
 private:
-	Section* upper;
-	Section* lower;
+	Upper upper;
+	Lower lower;
 	int total;
 };

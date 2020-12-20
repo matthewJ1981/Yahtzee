@@ -21,6 +21,7 @@ TEST(UpperSectionTest, SetScoreTest)
 	int score = 50;
 	int bonus = 35;
 
+	//Section* upper = new Upper();
 	Section* upper = new Upper();
 	Dice dice; //5 6-sided dice, all value 1
 
@@ -29,7 +30,7 @@ TEST(UpperSectionTest, SetScoreTest)
 	EXPECT_EQ(upper->SubTotal(), 0);
 	EXPECT_EQ(upper->Bonus(), 0);
 	EXPECT_EQ(upper->Total(), 0);
-	EXPECT_EQ(upper->Size(), 1);
+	EXPECT_EQ(upper->Size(), 6);
 	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
 }
 
@@ -47,7 +48,7 @@ TEST(UpperSectionTest, CalcSubTotalTest)
 	EXPECT_EQ(upper->SubTotal(), score);
 	EXPECT_EQ(upper->Bonus(), 0);
 	EXPECT_EQ(upper->Total(), 0);
-	EXPECT_EQ(upper->Size(), 1);
+	EXPECT_EQ(upper->Size(), 6);
 	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
 }
 
@@ -66,6 +67,6 @@ TEST(UpperSectionTest, TallyTest)
 	EXPECT_EQ(upper->SubTotal(), score);
 	EXPECT_EQ(upper->Bonus(), bonus);
 	EXPECT_EQ(upper->Total(), score + bonus);
-	EXPECT_EQ(upper->Size(), 1);
+	EXPECT_EQ(upper->Size(), 6);
 	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
 }
