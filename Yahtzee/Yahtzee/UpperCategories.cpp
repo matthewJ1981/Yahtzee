@@ -18,25 +18,65 @@ int Ones::CheckScore(const Dice& dice) const
 
 int Twos::CheckScore(const Dice& dice) const
 {
-	return 0;
+	if (score > -1)
+		return -1;
+
+	int score = 0;
+
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 2) score += 2; });
+
+	return score;
 }
 
 int Threes::CheckScore(const Dice& dice) const
 {
-	return 0;
+	if (score > -1)
+		return -1;
+
+	int score = 0;
+
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 3) score += 3; });
+
+	return score;
 }
 
 int Fours::CheckScore(const Dice& dice) const
 {
-	return 0;
+	if (score > -1)
+		return -1;
+
+	int score = 0;
+
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 4) score += 4; });
+
+	return score;
 }
 
 int Fives::CheckScore(const Dice& dice) const
 {
-	return 0;
+	if (score > -1)
+		return -1;
+
+	int score = 0;
+
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 5) score += 5; });
+
+	return score;
 }
 
 int Sixes::CheckScore(const Dice& dice) const
 {
-	return 0;
+	if (score > -1)
+		return -1;
+
+	int score = 0;
+
+	std::vector<Die> d = dice.GetDice();
+	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 6) score += 6; });
+
+	return score;
 }
