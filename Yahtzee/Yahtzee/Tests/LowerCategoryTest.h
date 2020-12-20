@@ -237,11 +237,11 @@ TEST(LowerCategoryTest, CheckScoreSmallStraightTest)
 	int sides = 6;
 
 	Dice dice;
+	dice.AddDice(sides, 2);
 	dice.AddDice(sides, 1);
 	dice.AddDice(sides, 2);
 	dice.AddDice(sides, 3);
 	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 6);
 
 	EXPECT_EQ(category->CheckScore(dice), 30);
 	EXPECT_EQ(category->Name(), name);

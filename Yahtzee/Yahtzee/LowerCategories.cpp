@@ -122,19 +122,22 @@ int SmallStraight::CheckScore(const Dice& dice) const
 	std::for_each(d.begin(), d.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
-			if (currentValue == previousValue + 1)
+			if (currentValue != previousValue)
 			{
-				total++;
-				previousValue++;
-			}
-			else
-			{
-				total = 1;
-				previousValue = currentValue;
-			}
+				if (currentValue == previousValue + 1)
+				{
+					total++;
+					previousValue++;
+				}
+				else
+				{
+					total = 1;
+					previousValue = currentValue;
+				}
 
-			if (total >= 4)
-				smStraight = true;
+				if (total >= 4)
+					smStraight = true; 
+			}
 		});
 
 	if (smStraight)
@@ -157,19 +160,22 @@ int LargeStraight::CheckScore(const Dice& dice) const
 	std::for_each(d.begin(), d.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
-			if (currentValue == previousValue + 1)
+			if (currentValue != previousValue)
 			{
-				previousValue++;
-				total++;
-			}
-			else
-			{
-				total = 1;
-				previousValue = currentValue;
-			}
+				if (currentValue == previousValue + 1)
+				{
+					previousValue++;
+					total++;
+				}
+				else
+				{
+					total = 1;
+					previousValue = currentValue;
+				}
 
-			if (total == 5)
-				lrgStraight = true;
+				if (total == 5)
+					lrgStraight = true;
+			}
 		});
 
 	if (lrgStraight)

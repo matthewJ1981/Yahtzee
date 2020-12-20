@@ -36,6 +36,32 @@ std::vector<std::pair<int , std::string>> ScoreCard::CheckScore(const Dice& dice
 	}*/
 }
 
+void ScoreCard::SetScore(int index, int score, bool yahtzeeBonus)
+{
+	if (yahtzeeBonus)
+		lower.IncrementBonus();
+
+	if (index < 6)
+		upper.SetScore(index, score);
+	else
+	{
+		lower.SetScore(index - 6, score);
+		
+	}
+}
+
+std::vector<std::pair<int, std::string>> ScoreCard::GetScores()
+{
+	std::vector<std::pair<int, std::string>> upperScoringCategories = upper.GetScores();
+	std::vector<std::pair<int, std::string>> lowerScoringCategories = lower.GetScores();
+
+	std::vector<std::pair<int, std::string>> scoringCategories;
+	std::move(upperScoringCategories.begin(), upperScoringCategories.end(), std::back_inserter(scoringCategories));
+	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
+
+	return scoringCategories;
+}
+
 int ScoreCard::Tally()
 {
 	return upper.Tally() + lower.Tally();

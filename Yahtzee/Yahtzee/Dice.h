@@ -12,6 +12,8 @@ public:
 	void AddDice(int sides = 6, int value = 1);
 	void RemoveDice(int index);
 	void Roll();
+	int Size() { return (int)dice.size(); }
+	Die operator[](int i){ return dice[i]; }
 
 	//const std::vector<int> Values() const;
 	std::vector<Die> GetDice() const { return dice; }

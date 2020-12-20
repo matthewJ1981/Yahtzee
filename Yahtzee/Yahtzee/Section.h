@@ -19,6 +19,7 @@ public:
 	int Total() const { return total; }
 	int Size() const { return (int)categories.size(); }
 	void SetScore(int index, int score);
+	std::vector<std::pair<int, std::string>> GetScores();
 
 	void CalcSubTotal();
 	virtual int Tally() = 0;

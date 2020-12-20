@@ -47,6 +47,8 @@ int main()
 #include ".\Tests\UpperCategoryTest.h"
 #include ".\Tests\UpperSectionTest.h"
 #include ".\Tests\LowerSectionTest.h"
+#include ".\Tests\ScoreCardTest.h"
+#include ".\Tests\IntegrationTest.h"
 
 int main()
 {

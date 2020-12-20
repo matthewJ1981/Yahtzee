@@ -3,6 +3,7 @@
 
 int Upper::Tally()
 {
+	CalcSubTotal();
 	if (subtotal >= 63)
 		bonus = 35;
 
@@ -19,24 +20,38 @@ std::vector<std::pair<int, std::string>> Lower::CheckScores(const Dice& dice, st
 {
 	std::vector<std::pair<int, std::string>> scores = Section::CheckScores(dice);
 
-	if (scores[6].first == 50)
+	if (scores[5].first == 50)
 	{
-		if (categories[6]->Score() == 50)
+		if (categories[5]->Score() == 50)
 		{
 			scores.push_back(std::make_pair(100, "Bonus"));
 		}
 
-		int upperIndex = dice.GetDice()[0].Value() - 1;
-		if (upperCategories[upperIndex].first == -1)
+		if (categories[5]->Score() == 50 || categories[5]->Score() == 0)
 		{
-			if (scores[2].first != -1)
-				scores[2].first = 25;
+			int upperIndex = dice.GetDice()[0].Value() - 1;
 
-			if (scores[3].first != -1)
-				scores[3].first = 30;
+			if (upperCategories[upperIndex].first == -1)
+			{
+				if (scores[2].first != -1)
+					scores[2].first = 25;
 
-			if (scores[4].first != -1)
-				scores[4].first = 40;
+				if (scores[3].first != -1)
+					scores[3].first = 30;
+
+				if (scores[4].first != -1)
+					scores[4].first = 40;
+			}
+			else
+			{
+				scores[0].first = -1;
+				scores[1].first = -1;
+				scores[2].first = -1;
+				scores[3].first = -1;
+				scores[4].first = -1;
+				scores[5].first = -1;
+				scores[6].first = -1;
+			}
 		}
 	}
 
@@ -45,6 +60,7 @@ std::vector<std::pair<int, std::string>> Lower::CheckScores(const Dice& dice, st
 
 int Lower::Tally()
 {
+	CalcSubTotal();
 	total = subtotal + bonus;
 	return total;
 }

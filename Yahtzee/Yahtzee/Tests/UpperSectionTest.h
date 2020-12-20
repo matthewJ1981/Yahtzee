@@ -6,14 +6,14 @@
 TEST(UpperSectionTest, ConstructorTest)
 {
 	
-	Section* upper = new Upper();
+	Upper upper;
 	Dice dice; //5 6-sided dice, all value 1
 
-	EXPECT_EQ(upper->SubTotal(), 0);
-	EXPECT_EQ(upper->Bonus(), 0);
-	EXPECT_EQ(upper->Total(), 0);
-	EXPECT_EQ(upper->Size(), 1);
-	EXPECT_EQ(upper->CheckScores(dice).size(), 1);
+	EXPECT_EQ(upper.SubTotal(), 0);
+	EXPECT_EQ(upper.Bonus(), 0);
+	EXPECT_EQ(upper.Total(), 0);
+	EXPECT_EQ(upper.Size(), 6);
+	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
 TEST(UpperSectionTest, SetScoreTest)
@@ -22,16 +22,16 @@ TEST(UpperSectionTest, SetScoreTest)
 	int bonus = 35;
 
 	//Section* upper = new Upper();
-	Section* upper = new Upper();
+	Upper upper;
 	Dice dice; //5 6-sided dice, all value 1
 
-	upper->SetScore(0, score);
+	upper.SetScore(0, score);
 
-	EXPECT_EQ(upper->SubTotal(), 0);
-	EXPECT_EQ(upper->Bonus(), 0);
-	EXPECT_EQ(upper->Total(), 0);
-	EXPECT_EQ(upper->Size(), 6);
-	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
+	EXPECT_EQ(upper.SubTotal(), 0);
+	EXPECT_EQ(upper.Bonus(), 0);
+	EXPECT_EQ(upper.Total(), 0);
+	EXPECT_EQ(upper.Size(), 6);
+	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
 TEST(UpperSectionTest, CalcSubTotalTest)
@@ -39,17 +39,17 @@ TEST(UpperSectionTest, CalcSubTotalTest)
 	int score = 50;
 	int bonus = 35;
 
-	Section* upper = new Upper();
+	Upper upper;
 	Dice dice; //5 6-sided dice, all value 1
 
-	upper->SetScore(0, score);
-	upper->CalcSubTotal();
+	upper.SetScore(0, score);
+	upper.CalcSubTotal();
 
-	EXPECT_EQ(upper->SubTotal(), score);
-	EXPECT_EQ(upper->Bonus(), 0);
-	EXPECT_EQ(upper->Total(), 0);
-	EXPECT_EQ(upper->Size(), 6);
-	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
+	EXPECT_EQ(upper.SubTotal(), score);
+	EXPECT_EQ(upper.Bonus(), 0);
+	EXPECT_EQ(upper.Total(), 0);
+	EXPECT_EQ(upper.Size(), 6);
+	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
 TEST(UpperSectionTest, TallyTest)
@@ -57,16 +57,16 @@ TEST(UpperSectionTest, TallyTest)
 	int score = 80;
 	int bonus = 35;
 
-	Section* upper = new Upper();
+	Upper upper;
 	Dice dice; //5 6-sided dice, all value 1
 
-	upper->SetScore(0, score);
-	upper->CalcSubTotal();
-	upper->Tally();
+	upper.SetScore(0, score);
+	//upper.CalcSubTotal();
+	upper.Tally();
 
-	EXPECT_EQ(upper->SubTotal(), score);
-	EXPECT_EQ(upper->Bonus(), bonus);
-	EXPECT_EQ(upper->Total(), score + bonus);
-	EXPECT_EQ(upper->Size(), 6);
-	EXPECT_EQ(upper->CheckScores(dice).size(), 0);
+	EXPECT_EQ(upper.SubTotal(), score);
+	EXPECT_EQ(upper.Bonus(), bonus);
+	EXPECT_EQ(upper.Total(), score + bonus);
+	EXPECT_EQ(upper.Size(), 6);
+	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
