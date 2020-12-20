@@ -3,6 +3,7 @@
 #include "Section.h"
 #include "UpperCategories.h"
 #include "LowerCategories.h"
+#include "categoryEnums.h"
 
 class Upper : public Section
 {
@@ -17,7 +18,6 @@ public:
 		categories.push_back(new Sixes("Sixes"));
 	}
 
-	//std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice) const override;
 	int Tally() override;
 private:
 };
@@ -37,12 +37,10 @@ public:
 	};
 	void IncrementBonus() { bonus += 100; }
 	int Tally() override;
-	bool BonusEligibile() const { return bonusEligible; }
-	void SetBonusEligible(bool b) { bonusEligible = b; }
-	/*std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice) const override*/
+	bool BonusEligibile() const { return categories[(int)LOWER::YAHTZEE]->Score() == 50; }
 	std::vector<std::pair<int, std::string>> CheckScores(const Dice& dice, std::vector<std::pair<int, std::string>> upperCategories) const;
 private:
-	bool bonusEligible = false;
+
 };
 
 

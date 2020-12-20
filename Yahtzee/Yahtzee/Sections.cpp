@@ -1,5 +1,4 @@
 #include "Sections.h"
-//#include <tuple>
 
 int Upper::Tally()
 {
@@ -10,11 +9,6 @@ int Upper::Tally()
 	total = subtotal + bonus;
 	return total;
 }
-//
-//std::vector<std::pair<int, std::string>> Upper::CheckScores(const Dice& dice) const
-//{
-//	return Section::CheckScores(dice);
-//}
 
 std::vector<std::pair<int, std::string>> Lower::CheckScores(const Dice& dice, std::vector<std::pair<int, std::string>> upperCategories) const
 {

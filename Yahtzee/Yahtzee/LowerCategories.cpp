@@ -186,9 +186,6 @@ int LargeStraight::CheckScore(const Dice& dice) const
 
 int Yahtzee::CheckScore(const Dice& dice) const
 {
-	//if (score == 0)
-	//	return -1;
-
 	std::vector<Die> d = dice.GetDice();
 	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;

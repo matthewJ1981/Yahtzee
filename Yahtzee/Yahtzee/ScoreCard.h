@@ -6,24 +6,9 @@
 class ScoreCard
 {
 public:
-	enum Category
-	{
-		ONES,
-		TWOS,
-		THREES,
-		FOURS,
-		FIVES,
-		SIXES,
-		THREEOFAKIND,
-		FOUROFAKIND,
-		FULLHOUSE,
-		SMALLSTRAIGHT,
-		LARGESTRAIGHT,
-		YAHTZEE,
-		CHANCE
-	};
+
 	//ScoreCard() : upper(nullptr), lower(nullptr), total(0)
-	ScoreCard() : total(0)
+	ScoreCard() : total(0), hasYahtzee(false), bonus(0)
 	{
 		//upper = new Upper();
 		//lower = new Lower();
@@ -31,10 +16,15 @@ public:
 	std::vector<std::pair<int, std::string>> CheckScore(const Dice& dice) const;
 
 	std::vector<std::pair<int, std::string>> GetScores();
-	void SetScore(int index, int score, bool yahtzeeBonus = false);
+	void SetScore(int index, const Dice& dice);
 	int Tally();
+	void AddBonus() { bonus += 100; }
+	int GetBonus() { return bonus; }
+
 private:
 	Upper upper;
 	Lower lower;
 	int total;
+	int bonus;
+	bool hasYahtzee = false;
 };

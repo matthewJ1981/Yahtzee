@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 #include "../ScoreCard.h"
+#include "../categoryEnums.h"
 
 TEST(ScoredCardTest, ConstructorTest)
 {
@@ -12,10 +13,17 @@ TEST(ScoredCardTest, ConstructorTest)
 TEST(ScoredCardTest, SetScoreTest)
 {
 	ScoreCard scoreCard;
+
+	Dice dice;
+	dice.AddDice(6, 6);
+	dice.AddDice(6, 6);
+	dice.AddDice(6, 6);
+	dice.AddDice(6, 6);
+	dice.AddDice(6, 6);
 	
-	scoreCard.SetScore(5, 45);
-	scoreCard.SetScore(11, 50);
-	scoreCard.SetScore(2, 10, true);
+	scoreCard.SetScore((int)ALL::SIXES, dice);
+	scoreCard.SetScore((int)ALL::YAHTZEE, dice);
+	scoreCard.SetScore((int)ALL::LARGESTRAIGHT, dice);
 	
-	EXPECT_EQ(scoreCard.Tally(), 205);
+	EXPECT_EQ(scoreCard.Tally(), 220);
 }

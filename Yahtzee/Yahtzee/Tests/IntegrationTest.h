@@ -2,6 +2,7 @@
 
 #include "../ScoreCard.h"
 #include <gtest/gtest.h>
+#include "../categoryEnums.h"
 
 TEST(IntegrationTest, TestOne)
 {
@@ -31,7 +32,7 @@ TEST(IntegrationTest, TestOne)
 	}
 	std::cout << "\n";
 
-	scoreCard.SetScore(ScoreCard::YAHTZEE, 50);
+	scoreCard.SetScore((int)ALL::YAHTZEE, dice);
 
 	scores = scoreCard.GetScores();
 

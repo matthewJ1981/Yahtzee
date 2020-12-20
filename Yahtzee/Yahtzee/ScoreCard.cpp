@@ -4,8 +4,7 @@
 #include <iterator>
 
 #include "Category.h"
-
-#include <iostream> // temporary. ******************************************************
+#include "categoryEnums.h"
 
 std::vector<std::pair<int , std::string>> ScoreCard::CheckScore(const Dice& dice) const
 {
@@ -18,48 +17,33 @@ std::vector<std::pair<int , std::string>> ScoreCard::CheckScore(const Dice& dice
 	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
 
 	return scoringCategories;
-	/*
-	// Output options
-	for (auto category : scoringCategories)
-		std::cout << category.first->Name() << ": " << category.second << "\n";
-
-	// Get input option
-	int input = 1;
-	--input; // subtract 1 to get index in vector;
-
-
-	// adjust score
-	if (input == 0 && input < (int)scoringCategories.size())
-	{
-		std::pair<Category*, int> selection = scoringCategories[input];
-		selection.first->SetScore(selection.second);
-	}*/
 }
 
-void ScoreCard::SetScore(int index, int score, bool yahtzeeBonus)
+void ScoreCard::SetScore(int index, const Dice& dice)
 {
-	if (yahtzeeBonus)
+	std::vector<std::pair<int, std::string>> scoringCategories = CheckScore(dice);
+
+	bool test = lower.BonusEligibile();
+	if (scoringCategories[(int)ALL::YAHTZEE].first == 50 && lower.BonusEligibile())
 		lower.IncrementBonus();
 
 	if (index < 6)
-		upper.SetScore(index, score);
+		upper.SetScore(index, scoringCategories[index].first);
 	else
-	{
-		lower.SetScore(index - 6, score);
-		
-	}
+		lower.SetScore(index - 6, scoringCategories[index].first);
+
 }
 
 std::vector<std::pair<int, std::string>> ScoreCard::GetScores()
 {
-	std::vector<std::pair<int, std::string>> upperScoringCategories = upper.GetScores();
-	std::vector<std::pair<int, std::string>> lowerScoringCategories = lower.GetScores();
+	std::vector<std::pair<int, std::string>> upperScores = upper.GetScores();
+	std::vector<std::pair<int, std::string>> lowerScores = lower.GetScores();
 
-	std::vector<std::pair<int, std::string>> scoringCategories;
-	std::move(upperScoringCategories.begin(), upperScoringCategories.end(), std::back_inserter(scoringCategories));
-	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
+	std::vector<std::pair<int, std::string>> scores;
+	std::move(upperScores.begin(), upperScores.end(), std::back_inserter(scores));
+	std::move(lowerScores.begin(), lowerScores.end(), std::back_inserter(scores));
 
-	return scoringCategories;
+	return scores;
 }
 
 int ScoreCard::Tally()

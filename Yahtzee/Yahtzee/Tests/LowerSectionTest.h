@@ -55,8 +55,7 @@ TEST(LowerSectionTest, SetScoreTest2)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), 80);
 	EXPECT_EQ(lower.Size(), 7);
-	//EXPECT_EQ(lower.CheckScores(dice).size(), 0);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligibile(), true);
 }
 
 TEST(LowerSectionTest, CalcSubTotalTest)
@@ -122,22 +121,22 @@ TEST(LowerSectionTest, IncrementBonusTest)
 	//EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), false);
 }
 
-TEST(LowerSectionTest, SetBonusEligibleTest)
-{
-	int score = 80;
-	int bonus = 100;
-
-	Lower lower;
-	Dice dice; //5 6-sided dice, all value 1
-
-	//Lower* lowPointer = static_cast<Lower*>(lower);
-
-	lower.SetBonusEligible(true);
-
-	EXPECT_EQ(lower.SubTotal(), 0);
-	EXPECT_EQ(lower.Bonus(), 0);
-	EXPECT_EQ(lower.Total(), 0);
-	EXPECT_EQ(lower.Size(), 7);
-	//EXPECT_EQ(lower.CheckScores(dice).size(), 1);
-	//EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), true);
-}
+//TEST(LowerSectionTest, SetBonusEligibleTest)
+//{
+//	int score = 80;
+//	int bonus = 100;
+//
+//	Lower lower;
+//	Dice dice; //5 6-sided dice, all value 1
+//
+//	//Lower* lowPointer = static_cast<Lower*>(lower);
+//
+//	lower.SetBonusEligible(true);
+//
+//	EXPECT_EQ(lower.SubTotal(), 0);
+//	EXPECT_EQ(lower.Bonus(), 0);
+//	EXPECT_EQ(lower.Total(), 0);
+//	EXPECT_EQ(lower.Size(), 7);
+//	//EXPECT_EQ(lower.CheckScores(dice).size(), 1);
+//	//EXPECT_EQ(static_cast<Lower*>(lower)->BonusEligibile(), true);
+//}
