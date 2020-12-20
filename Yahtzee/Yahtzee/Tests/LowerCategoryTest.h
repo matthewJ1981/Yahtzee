@@ -7,32 +7,27 @@
 TEST(LowerCategoryTest, ConstructorTest)
 {
 	int score = -1;
-	std::string name = "Three Of A Kind";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 
 	EXPECT_EQ(category->Score(), score);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, SetScoreTest)
 {
 	int score = 15;
-	std::string name = "Three Of A Kind";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 	category->SetScore(score);
 
 	EXPECT_EQ(category->Score(), score);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreThreeOfKindTest1)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 
 	int sides = 6;
 
@@ -44,15 +39,13 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest1)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 23);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreThreeOfKindTest2)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 
 	int sides = 6;
 
@@ -64,15 +57,13 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest2)
 	dice.AddDice(sides, 3);
 
 	EXPECT_EQ(category->CheckScore(dice), 0);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreThreeOfKindTest3)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 
 	int sides = 6;
 
@@ -84,15 +75,13 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest3)
 	dice.AddDice(sides, 6);
 
 	EXPECT_EQ(category->CheckScore(dice), 25);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreThreeOfKindTest4)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new ThreeOfKind(name);
+	Category* category = new ThreeOfKind();
 
 	int sides = 6;
 
@@ -104,15 +93,13 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest4)
 	dice.AddDice(sides, 6);
 
 	EXPECT_EQ(category->CheckScore(dice), 10);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFourOfKindTest1)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FourOfKind(name);
+	Category* category = new FourOfKind();
 
 	int sides = 6;
 
@@ -124,15 +111,13 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest1)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 9);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFourOfKindTest2)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FourOfKind(name);
+	Category* category = new FourOfKind();
 
 	int sides = 6;
 
@@ -144,15 +129,13 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest2)
 	dice.AddDice(sides, 1);
 
 	EXPECT_EQ(category->CheckScore(dice), 5);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFourOfKindTest3)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FourOfKind(name);
+	Category* category = new FourOfKind();
 
 	int sides = 6;
 
@@ -164,15 +147,13 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest3)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 0);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFullHouseTest1)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FullHouse(name);
+	Category* category = new FullHouse();
 
 	int sides = 6;
 
@@ -184,15 +165,13 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest1)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 25);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFullHouseTest2)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FullHouse(name);
+	Category* category = new FullHouse();
 
 	int sides = 6;
 
@@ -204,15 +183,13 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest2)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 0);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreFullHouseTest3)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new FullHouse(name);
+	Category* category = new FullHouse();
 
 	int sides = 6;
 
@@ -224,15 +201,13 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest3)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 0);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreSmallStraightTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new SmallStraight(name);
+	Category* category = new SmallStraight();
 
 	int sides = 6;
 
@@ -244,15 +219,13 @@ TEST(LowerCategoryTest, CheckScoreSmallStraightTest)
 	dice.AddDice(sides, 4);
 
 	EXPECT_EQ(category->CheckScore(dice), 30);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreLargeStraightTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new LargeStraight(name);
+	Category* category = new LargeStraight();
 
 	int sides = 6;
 
@@ -264,15 +237,13 @@ TEST(LowerCategoryTest, CheckScoreLargeStraightTest)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 40);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreYahtzeeTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Yahtzee(name);
+	Category* category = new Yahtzee();
 
 	int sides = 6;
 
@@ -284,15 +255,13 @@ TEST(LowerCategoryTest, CheckScoreYahtzeeTest)
 	dice.AddDice(sides, 6);
 
 	EXPECT_EQ(category->CheckScore(dice), 50);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(LowerCategoryTest, CheckScoreChanceTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Chance(name);
+	Category* category = new Chance();
 
 	int sides = 6;
 
@@ -304,5 +273,4 @@ TEST(LowerCategoryTest, CheckScoreChanceTest)
 	dice.AddDice(sides, 6);
 
 	EXPECT_EQ(category->CheckScore(dice), 19);
-	EXPECT_EQ(category->Name(), name);
 }

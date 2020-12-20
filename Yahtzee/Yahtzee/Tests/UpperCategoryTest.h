@@ -7,32 +7,27 @@
 TEST(UpperCategoryTest, ConstructorTest)
 {
 	int score = -1;
-	std::string name = "Ones";
 
-	Category* category = new Ones(name);
+	Category* category = new Ones();
 
 	EXPECT_EQ(category->Score(), score);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, SetScoreTest)
 {
 	int score = 15;
-	std::string name = "Ones";
 
-	Category* category = new Ones(name);
+	Category* category = new Ones();
 	category->SetScore(score);
 
 	EXPECT_EQ(category->Score(), score);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreOnesTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Ones(name);
+	Category* category = new Ones();
 
 	int sides = 6;
 
@@ -44,15 +39,13 @@ TEST(UpperCategoryTest, CheckScoreOnesTest)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 3);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreTwosTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Twos(name);
+	Category* category = new Twos();
 
 	int sides = 6;
 
@@ -64,15 +57,13 @@ TEST(UpperCategoryTest, CheckScoreTwosTest)
 	dice.AddDice(sides, 5);
 
 	EXPECT_EQ(category->CheckScore(dice), 4);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreThreesTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Threes(name);
+	Category* category = new Threes();
 
 	int sides = 6;
 
@@ -84,15 +75,13 @@ TEST(UpperCategoryTest, CheckScoreThreesTest)
 	dice.AddDice(sides, 4);
 
 	EXPECT_EQ(category->CheckScore(dice), 3);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreFoursTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Fours(name);
+	Category* category = new Fours();
 
 	int sides = 6;
 
@@ -104,16 +93,13 @@ TEST(UpperCategoryTest, CheckScoreFoursTest)
 	dice.AddDice(sides, 4);
 
 	EXPECT_EQ(category->CheckScore(dice), 20);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreFivesTest)
 {
 	int score = -1;
-	std::string name = "Name";
 
-	Category* category = new Fives(name);
-
+	Category* category = new Fives();
 	int sides = 6;
 
 	Dice dice;
@@ -124,15 +110,13 @@ TEST(UpperCategoryTest, CheckScoreFivesTest)
 	dice.AddDice(sides, 4);
 
 	EXPECT_EQ(category->CheckScore(dice), 10);
-	EXPECT_EQ(category->Name(), name);
 }
 
 TEST(UpperCategoryTest, CheckScoreSixesTest)
 {
 	int score = -1;
-	std::string name = "name";
 
-	Category* category = new Sixes(name);
+	Category* category = new Sixes();
 
 	int sides = 6;
 
@@ -144,5 +128,4 @@ TEST(UpperCategoryTest, CheckScoreSixesTest)
 	dice.AddDice(sides, 4);
 
 	EXPECT_EQ(category->CheckScore(dice), 6);
-	EXPECT_EQ(category->Name(), name);
 }

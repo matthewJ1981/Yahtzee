@@ -15,7 +15,7 @@ TEST(IntegrationTest, TestOne)
 	dice.AddDice(6, 6);
 	dice.AddDice(6, 6);
 
-	std::vector<std::pair<int, std::string>> scores = scoreCard.CheckScore(dice);
+	std::vector<int> scores = scoreCard.CheckScore(dice);
 
 	for (int i = 0; i < dice.Size(); ++i)
 	{
@@ -28,7 +28,7 @@ TEST(IntegrationTest, TestOne)
 
 	for (size_t i = 0; i < scores.size(); ++i)
 	{
-		std::cout << scores[i].second << ": " << scores[i].first << "\n";
+		std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
 	}
 	std::cout << "\n";
 
@@ -40,7 +40,7 @@ TEST(IntegrationTest, TestOne)
 
 	for (size_t i = 0; i < scores.size(); ++i)
 	{
-		std::cout << scores[i].second << ": " << scores[i].first << "\n";
+		std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
 	}
 	std::cout << "\n";
 }

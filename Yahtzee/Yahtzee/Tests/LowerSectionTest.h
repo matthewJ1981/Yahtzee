@@ -43,9 +43,7 @@ TEST(LowerSectionTest, SetScoreTest2)
 	int bonus = 100;
 
 	Lower lower;
-	Dice dice; //5 6-sided dice, all value 1
-	//std::vector<std::pair<int, std::string>> scores;
-	//scores.push(std::make_pair())
+	Dice dice; 
 
 	lower.SetScore(5, score);
 	lower.SetScore(0, 30);

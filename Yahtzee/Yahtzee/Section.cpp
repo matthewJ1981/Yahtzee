@@ -3,12 +3,12 @@
 #include <assert.h>
 #include "categoryEnums.h"
 
-std::vector<std::pair<int, std::string>> Section::CheckScores(const Dice& dice) const
+std::vector<int> Section::CheckScores(const Dice& dice) const
 {
-	std::vector<std::pair<int,std::string>> scoringCategories;
+	std::vector<int> scoringCategories;
 
 	for (int i = 0; i < (int)categories.size(); ++i)
-		scoringCategories.push_back(std::make_pair(categories[i]->CheckScore(dice), categories[i]->Name()));
+		scoringCategories.push_back(categories[i]->CheckScore(dice));
 
 	return scoringCategories;
 }
@@ -20,12 +20,12 @@ void Section::SetScore(int index, int score)
 	categories[index]->SetScore(score);
 }
 
-std::vector<std::pair<int, std::string>> Section::GetScores()
+std::vector<int> Section::GetScores()
 {
-	std::vector<std::pair<int, std::string>> scoringCategories;
+	std::vector<int> scoringCategories;
 
 	for (int i = 0; i < (int)categories.size(); ++i)
-		scoringCategories.push_back(std::make_pair(categories[i]->Score(), categories[i]->Name()));
+		scoringCategories.push_back(categories[i]->Score());
 
 	return scoringCategories;
 }
