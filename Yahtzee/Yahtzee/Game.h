@@ -22,18 +22,19 @@ public:
 	void Input();
 	void Update();
 	void Draw();
+
 	void GetPlayers();
 	void ResetDice();
 	bool GameOver();
 	void RollDice() { readyDice.Roll(); }
 
-	bool PlayerScored() { return playerScored; }
+	//bool PlayerScored() { return playerScored; }
 
-	void IncrementRound() { currentRound++;}
+	//void IncrementRound() { currentRound++;}
 	int CurrentRound() { return currentRound; }
 
-	void IncrementPlayer() { currentPlayer++; }
-	int CurrentPlayer() { return currentPlayer; }
+	//void IncrementPlayer() { currentPlayer++; }
+	//int CurrentPlayer() { return currentPlayer; }
 
 	void IncrementRoll();
 
@@ -42,13 +43,14 @@ private:
 	std::vector<Player> players;
 	int roundCount;
 	int state = ROLLING;
-	bool playing = true;
-	bool playerScored = false;
+	//bool playing = true;
+	//bool playerScored = false;
 	int currentRound;
 	int currentPlayer;
+	int currentRoll;
 	Dice readyDice;
 	Dice heldDice;
-	std::vector<int> diceToHold;
-	int currentRoll;
+
+	std::vector<int> diceToHold;	
 	int indexToScore;
 };

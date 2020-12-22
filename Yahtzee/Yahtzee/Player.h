@@ -10,16 +10,13 @@ class Player
 public:
 	Player(std::string n);
 	std::string Name() const { return name; }
-	//void TakeTurn();
-	//void RollDice(Dice& dice);
-	//bool HoldDie(int die);
-	//void ResetDice();
-	std::vector<int> CheckScore(const Dice& dice) const;
+
 	int Tally();
-	const ScoreCard& GetScoreCard() const { return scoreCard; }
-	friend std::ostream& operator << (std::ostream& out, Player& player);
+	//const ScoreCard& GetScoreCard() const { return scoreCard; }
 	void SetScore(int index, const Dice& dice);
 	std::vector<int> GetScores();
+	std::vector<int> CheckScore(const Dice& dice) const;
+	friend std::ostream& operator << (std::ostream& out, Player& player);
 	
 private:
 	std::string name;

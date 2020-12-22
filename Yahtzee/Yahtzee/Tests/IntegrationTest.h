@@ -7,10 +7,10 @@
 
 TEST(IntegrationTest, TestOne)
 {
-	/*Game game;
+	Game game;
 	int testCounter = 0;
 	game.GetPlayers();
-	while (game.CurrentRound() < 14)
+	while (game.CurrentRound() < 2)
 	{
 		game.Input();
 		game.Update();
@@ -18,40 +18,40 @@ TEST(IntegrationTest, TestOne)
 		testCounter++;
 	}
 
-	ScoreCard scoreCard;
-	Dice dice;
+	//ScoreCard scoreCard;
+	//Dice dice;
 
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
+	//dice.AddDice({ 6, 6 });
+	//dice.AddDice({ 6, 6 });
+	//dice.AddDice({ 6, 6 });
+	//dice.AddDice({ 6, 6 });
+	//dice.AddDice({ 6, 6 });
 
-	std::vector<int> scores = scoreCard.CheckScore(dice);
+	//std::vector<int> scores = scoreCard.CheckScore(dice);
 
-	for (int i = 0; i < dice.size(); ++i)
-	{
-		std::cout << dice[i].Value();
-		if (i < dice.size() - 1)
-			std::cout << ", ";
-	}
+	//for (int i = 0; i < dice.size(); ++i)
+	//{
+	//	std::cout << dice[i].Value();
+	//	if (i < dice.size() - 1)
+	//		std::cout << ", ";
+	//}
 
-	std::cout << "\n";
+	//std::cout << "\n";
 
-	for (size_t i = 0; i < scores.size(); ++i)
-		std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
+	//for (size_t i = 0; i < scores.size(); ++i)
+	//	std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
 
-	std::cout << "\n";
+	//std::cout << "\n";
 
-	scoreCard.SetScore((int)ALL::YAHTZEE, dice);
+	//scoreCard.SetScore((int)ALL::YAHTZEE, dice);
 
-	scores = scoreCard.GetScores();
+	//scores = scoreCard.GetScores();
 
-	std::cout << "\n";
+	//std::cout << "\n";
 
-	for (size_t i = 0; i < scores.size(); ++i)
-	{
-		std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
-	}
-	std::cout << "\n";*/
+	//for (size_t i = 0; i < scores.size(); ++i)
+	//{
+	//	std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
+	//}
+	//std::cout << "\n";
 }

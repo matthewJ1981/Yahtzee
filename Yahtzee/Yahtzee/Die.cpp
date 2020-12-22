@@ -8,7 +8,7 @@ void Die::Roll()
 
 std::ostream& operator<<(std::ostream& out, const Die& die)
 {
-	out << "Value: " << die.value << " Sides: " << die.sides;
-	
+	//out << "Value: " << die.value << " Sides: " << die.sides;
+	out << die.value;
 	return out;
 }

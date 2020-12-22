@@ -4,7 +4,7 @@
 
 Game::Game() :
 	roundCount(13),
-	playing(true),
+	//playing(true),
 	currentRound(1),
 	currentPlayer(0),
 	currentRoll(0),
@@ -54,10 +54,7 @@ void Game::Update()
 	{
 		IncrementRoll(); 
 		readyDice.Roll();
-		//players[currentPlayer].RollDice(readyDice);
-		//players[currentPlayer].CheckScore();
-		//std::cout << players[j].Name() << "'s turn.\n";
-		//players[j].TakeTurn();
+
 		state = ROLLED;
 	}
 	else if (state == HOLD)
@@ -75,12 +72,6 @@ void Game::Update()
 				readyDice.RemoveDice(i);
 			}
 
-		/*for (int i = 0; i < (int)readyDice.size(); ++i)
-			std::cout << readyDice[i].IsHeld() << " ";
-		std::cout << "\n";
-		for (int i = 0; i < (int)heldDice.size(); ++i)
-			std::cout << heldDice[i].IsHeld() << " ";
-		std::cout << "\n";*/
 		diceToHold.clear();
 	}
 	else if (state == SCORE)
@@ -97,7 +88,10 @@ void Game::Draw()
 		std::cout << "ReadyDice: " << readyDice << "\n";
 		std::cout << "HeldDice: " << heldDice << "\n";
 
-		std::cout << "Choose dice to hold[1] or score[2]: ";
+		if (currentRoll < 3)
+			std::cout << "Choose dice to hold[1] or score[2]: ";
+		else
+			state = PRESCORE;
 	}
 	else if (state == PREHOLD)
 	{
