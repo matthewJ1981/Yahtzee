@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Die.h"
-//#include <iostream>
+#include <iostream>
 
 class Dice
 {
@@ -10,16 +10,17 @@ public:
 	Dice(int numDice, int sides = 6);
 
 	void AddDice(int sides = 6, int value = 1);
+	void AddDice(const Die& d);
 	void RemoveDice(int index);
 	void Roll();
 	int Size() { return (int)dice.size(); }
-	Die operator[](int i){ return dice[i]; }
-
+	Die& operator[](int i){ return dice[i]; }
+	const Die& operator[](int i) const { return dice[i]; }
 	//const std::vector<int> Values() const;
 	std::vector<Die> GetDice() const { return dice; }
 	void Clear();
 
-	//friend std::ostream& operator<< (std::ostream& out, const Dice& dice);
+	friend std::ostream& operator<< (std::ostream& out, const Dice& dice);
 
 private:
 	std::vector<Die> dice;

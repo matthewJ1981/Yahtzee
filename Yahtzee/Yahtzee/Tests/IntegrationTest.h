@@ -1,11 +1,23 @@
 #pragma once
 
+#include "../Game.h"
 #include "../ScoreCard.h"
 #include <gtest/gtest.h>
 #include "../categoryEnums.h"
 
 TEST(IntegrationTest, TestOne)
 {
+	Game game;
+	int testCounter = 0;
+	game.GetPlayers();
+	while (game.CurrentRound() < 14)
+	{
+		game.Input();
+		game.Update();
+		game.Draw();
+		testCounter++;
+	}
+
 	ScoreCard scoreCard;
 	Dice dice;
 

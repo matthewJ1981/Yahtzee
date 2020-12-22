@@ -13,6 +13,11 @@ void Dice::AddDice(int sides, int value)
 	dice.push_back({ sides, value });
 }
 
+void Dice::AddDice(const Die& d)
+{
+	dice.push_back(d);
+}
+
 void Dice::RemoveDice(int index)
 {
 	assert(index >= 0 && index < dice.size());
@@ -42,12 +47,12 @@ void Dice::Clear()
 //}
 //
 //
-//std::ostream& operator<<(std::ostream& out, const Dice& d)
-//{
-//	for (const int& i : d.Values())
-//	{
-//		out << i << " ";
-//	}
-//
-//	return out;
-//}
+std::ostream& operator<<(std::ostream& out, const Dice& d)
+{
+	for (const Die& d : d.GetDice())
+	{
+		out << d.Value() << " ";
+	}
+
+	return out;
+}

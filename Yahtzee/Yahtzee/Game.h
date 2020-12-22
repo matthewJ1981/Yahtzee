@@ -12,7 +12,9 @@ public:
 	{
 		ROLLING,
 		ROLLED,
+		PREHOLD,
 		HOLD,
+		PRESCORE,
 		SCORE
 	};
 
@@ -23,14 +25,18 @@ public:
 	void GetPlayers();
 	void ResetDice();
 	bool GameOver();
+	void RollDice() { readyDice.Roll(); }
 
 	bool PlayerScored() { return playerScored; }
 
-	void IncrementRound() { currentRound++; playerScored = false; }
+	void IncrementRound() { currentRound++;}
 	int CurrentRound() { return currentRound; }
 
-	void IncrementPlayer() { currentPlayer++; if (currentPlayer > (int)players.size() - 1) currentPlayer = 0; }
+	void IncrementPlayer() { currentPlayer++; }
 	int CurrentPlayer() { return currentPlayer; }
+
+	void IncrementRoll();
+
 
 private:
 	std::vector<Player> players;
@@ -43,5 +49,5 @@ private:
 	Dice readyDice;
 	Dice heldDice;
 	std::vector<int> diceToHold;
-
+	int currentRoll;
 };
