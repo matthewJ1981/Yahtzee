@@ -3,11 +3,26 @@
 #include "../Sections.h"
 #include <gtest/gtest.h>
 
-TEST(UpperSectionTest, ConstructorTest)
+class UpperSectionTest : public testing::Test
 {
-	
+protected:
+
+	virtual void SetUp()
+	{
+	}
+
+	virtual void TearDown()
+	{
+	}
+
 	Upper upper;
-	Dice dice; //5 6-sided dice, all value 1
+	Dice dice;
+
+};
+
+
+TEST_F(UpperSectionTest, ConstructorTest)
+{
 
 	EXPECT_EQ(upper.SubTotal(), 0);
 	EXPECT_EQ(upper.Bonus(), 0);
@@ -16,14 +31,9 @@ TEST(UpperSectionTest, ConstructorTest)
 	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
-TEST(UpperSectionTest, SetScoreTest)
+TEST_F(UpperSectionTest, SetScoreTest)
 {
 	int score = 50;
-	int bonus = 35;
-
-	//Section* upper = new Upper();
-	Upper upper;
-	Dice dice; //5 6-sided dice, all value 1
 
 	upper.SetScore(0, score);
 
@@ -34,13 +44,9 @@ TEST(UpperSectionTest, SetScoreTest)
 	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
-TEST(UpperSectionTest, CalcSubTotalTest)
+TEST_F(UpperSectionTest, CalcSubTotalTest)
 {
 	int score = 50;
-	int bonus = 35;
-
-	Upper upper;
-	Dice dice; //5 6-sided dice, all value 1
 
 	upper.SetScore(0, score);
 	upper.CalcSubTotal();
@@ -52,16 +58,12 @@ TEST(UpperSectionTest, CalcSubTotalTest)
 	EXPECT_EQ(upper.CheckScores(dice).size(), 6);
 }
 
-TEST(UpperSectionTest, TallyTest)
+TEST_F(UpperSectionTest, TallyTest)
 {
 	int score = 80;
 	int bonus = 35;
 
-	Upper upper;
-	Dice dice; //5 6-sided dice, all value 1
-
 	upper.SetScore(0, score);
-	//upper.CalcSubTotal();
 	upper.Tally();
 
 	EXPECT_EQ(upper.SubTotal(), score);

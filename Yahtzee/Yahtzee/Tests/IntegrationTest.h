@@ -7,7 +7,7 @@
 
 TEST(IntegrationTest, TestOne)
 {
-	Game game;
+	/*Game game;
 	int testCounter = 0;
 	game.GetPlayers();
 	while (game.CurrentRound() < 14)
@@ -53,5 +53,5 @@ TEST(IntegrationTest, TestOne)
 	{
 		std::cout << scoreCard.EnumToString((int)i) << ": " << scores[i] << "\n";
 	}
-	std::cout << "\n";
+	std::cout << "\n";*/
 }

@@ -3,101 +3,96 @@
 #include "../Dice.h"
 #include <gtest/gtest.h>
 
-TEST(DiceTest, DefaultConstructorTest)
+class DiceTest : public testing::Test
 {
-	constexpr int defaultSize = 5;
-	constexpr int defaultValue = 1;
+protected:
 
-	Dice dice;
+	virtual void SetUp()
+	{
+		dice = new Dice(numDice, numSides);
+	}
 
-	EXPECT_EQ(dice.size(), defaultSize);
-	EXPECT_EQ(dice[0].Value(), defaultValue);
+	virtual void TearDown()
+	{
+		delete dice;
+	}
+
+	static constexpr int defaultSize = 5;
+	static constexpr int defaultSides = 6;
+	static constexpr int defaultValue = 1;
+	static constexpr int defaultHeld = false;
+	static constexpr int numDice = 8;
+	static constexpr int numSides = 3;
+
+	Dice defaultDice;
+	Dice* dice;
+};
+
+TEST_F(DiceTest, DefaultConstructorTest)
+{
+	EXPECT_EQ(defaultDice.size(), defaultSize);
+	EXPECT_EQ(defaultDice[0].Value(), defaultValue);
 }
 
-TEST(DiceTest, ConstructorDefaultSidesTest)
+TEST_F(DiceTest, ConstructorDefaultSidesTest)
 {
-	constexpr int defaultSize = 5;
-	constexpr int defaultValue = 1;
-	constexpr int defaultSides = 6;
+	Dice dice(numDice);
 
-	Dice dice;
-
-	EXPECT_EQ(dice.size(), defaultSize);
+	EXPECT_EQ(dice.size(), numDice);
 	EXPECT_EQ(dice[0].Value(), 1);
 
 	for (Die d : dice)
 	{
 		EXPECT_EQ(d.Value(), defaultValue);
 		EXPECT_EQ(d.Sides(), defaultSides);
-		EXPECT_EQ(d.IsHeld(), false);
+		EXPECT_EQ(d.IsHeld(), defaultHeld);
 	}
 }
 
-TEST(DiceTest, ConstructorTest)
+TEST_F(DiceTest, ConstructorTest)
 {
-	int numDice = 7;
-	int sides = 8;
-	int value = 1;
+	EXPECT_EQ(dice->size(), numDice);
+	EXPECT_EQ((*dice)[0].Value(), defaultValue);
 
-	Dice dice(numDice, sides);
-
-	EXPECT_EQ(dice.size(), numDice);
-	EXPECT_EQ(dice[0].Value(), 1);
-
-	for (Die d : dice)
+	for (Die d : *dice)
 	{
-		EXPECT_EQ(d.Value(), value);
-		EXPECT_EQ(d.Sides(), sides);
-		EXPECT_EQ(d.IsHeld(), false);
+		EXPECT_EQ(d.Value(), defaultValue);
+		EXPECT_EQ(d.Sides(), numSides);
+		EXPECT_EQ(d.IsHeld(), defaultHeld);
 	}
 }
 
-TEST(DiceTest, AddDiceTest)
+TEST_F(DiceTest, AddDiceTest)
 {
-	int value = 1;
-	int sides = 6;
-	int numDice = 1;
-	int defaultSize = 5;
-
-	Dice dice;
 	Die die;
-	dice.AddDice(die);
+	dice->AddDice(die);
 
-	EXPECT_EQ(dice.size(), defaultSize);
-	EXPECT_EQ(dice[0].Sides(), sides);
-	EXPECT_EQ(dice[0].Value(), value);
+	EXPECT_EQ(dice->size(), numDice + 1);
+	EXPECT_EQ((*dice)[dice->size() - 1].Sides(), defaultSides);
+	EXPECT_EQ((*dice)[dice->size() - 1].Value(), defaultValue);
 }
 
-TEST(DiceTest, RemoveDiceTest)
+TEST_F(DiceTest, RemoveDiceTest)
 {
-	int value = 1;
-	int sides = 5;
-	int numDice = 2;
+	dice->RemoveDice(0);
 
-	Dice dice;
-	dice.RemoveDice(0);
-
-	EXPECT_EQ(dice.size(), numDice - 1);
-	EXPECT_EQ(dice[0].Sides(), sides);
-	EXPECT_EQ(dice[0].Value(), value);
+	EXPECT_EQ(dice->size(), numDice - 1);
+	EXPECT_EQ((*dice)[0].Sides(), numSides);
+	EXPECT_EQ((*dice)[0].Value(), defaultValue);
 }
 
-TEST(DiceTest, RollDiceTest)
+TEST_F(DiceTest, RollDiceTest)
 {
-	int value = 1;
-	int sides = 6;
-	int numDice = 6;
 	int minValue = 1;
-	int maxValue = sides;
+	int maxValue = numSides;
 
-	Dice dice(numDice, sides);
-	dice.Roll();
+	dice->Roll();
 
-	EXPECT_EQ(dice.size(), numDice);
-	for (Die d : dice)
+	EXPECT_EQ(dice->size(), numDice);
+	for (Die d : *dice)
 	{
 		EXPECT_GE(d.Value(), minValue);
 		EXPECT_LE(d.Value(), maxValue);
-		EXPECT_EQ(d.Sides(), sides);
+		EXPECT_EQ(d.Sides(), numSides);
 	}
 }

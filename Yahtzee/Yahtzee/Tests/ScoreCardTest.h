@@ -4,22 +4,37 @@
 #include "../ScoreCard.h"
 #include "../categoryEnums.h"
 
-TEST(ScoredCardTest, ConstructorTest)
+class ScoreCardTest : public testing::Test
 {
+protected:
+
+	virtual void SetUp()
+	{
+	}
+
+	virtual void TearDown()
+	{
+	}
+
 	ScoreCard scoreCard;
+	Dice dice;
+};
+
+
+TEST_F(ScoreCardTest, ConstructorTest)
+{
 	EXPECT_EQ(scoreCard.Tally(), 0);
 }
 
-TEST(ScoredCardTest, SetScoreTest)
+TEST_F(ScoreCardTest, SetScoreTest)
 {
 	ScoreCard scoreCard;
 
-	Dice dice;
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
-	dice.AddDice({ 6, 6 });
+	dice[0].SetValue(6);
+	dice[1].SetValue(6);
+	dice[2].SetValue(6);
+	dice[3].SetValue(6);
+	dice[4].SetValue(6);
 					    
 	scoreCard.SetScore((int)ALL::SIXES, dice);
 	scoreCard.SetScore((int)ALL::YAHTZEE, dice);

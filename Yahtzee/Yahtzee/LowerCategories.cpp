@@ -11,7 +11,7 @@ int ThreeOfKind::CheckScore(const Dice& dice) const
 	int temp = 0;
 
 	Dice tempDice = dice;
-	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	std::sort(tempDice.begin(), tempDice.end());
 	int previousValue = -1;
 	int total = 1;
 	bool threeOfKind = false;

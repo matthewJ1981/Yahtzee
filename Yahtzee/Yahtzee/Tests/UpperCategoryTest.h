@@ -4,128 +4,115 @@
 #include "../Dice.h"
 #include <gtest/gtest.h>
 
-TEST(UpperCategoryTest, ConstructorTest)
+class UpperCategoryTest : public testing::Test
+{
+protected:
+
+	virtual void SetUp()
+	{
+	}
+
+	virtual void TearDown()
+	{
+		delete category;
+	}
+
+	int score;
+	Dice dice;
+	Category* category = nullptr;
+};
+
+TEST_F(UpperCategoryTest, ConstructorTest)
 {
 	int score = -1;
-
-	Category* category = new Ones();
+	category = new Ones();
 
 	EXPECT_EQ(category->Score(), score);
 }
 
-TEST(UpperCategoryTest, SetScoreTest)
+TEST_F(UpperCategoryTest, SetScoreTest)
 {
 	int score = 15;
-
-	Category* category = new Ones();
+	category = new Ones();
 	category->SetScore(score);
 
 	EXPECT_EQ(category->Score(), score);
 }
 
-TEST(UpperCategoryTest, CheckScoreOnesTest)
+TEST_F(UpperCategoryTest, CheckScoreOnesTest)
 {
-	int score = -1;
+	category = new Ones();
 
-	Category* category = new Ones();
-
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 5 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 5 });
+	dice[0].SetValue(5);
+	dice[1].SetValue(1);
+	dice[2].SetValue(1);
+	dice[3].SetValue(1);
+	dice[4].SetValue(5);
 
 	EXPECT_EQ(category->CheckScore(dice), 3);
 }
 
-TEST(UpperCategoryTest, CheckScoreTwosTest)
+TEST_F(UpperCategoryTest, CheckScoreTwosTest)
 {
-	int score = -1;
+	category = new Twos();
 
-	Category* category = new Twos();
-
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 2 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 2 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 5 });
+	dice[0].SetValue(2);
+	dice[1].SetValue(1);
+	dice[2].SetValue(2);
+	dice[3].SetValue(1);
+	dice[4].SetValue(5);
 				 
 	EXPECT_EQ(category->CheckScore(dice), 4);
 }
 
-TEST(UpperCategoryTest, CheckScoreThreesTest)
+TEST_F(UpperCategoryTest, CheckScoreThreesTest)
 {
-	int score = -1;
+	category = new Threes();
 
-	Category* category = new Threes();
-
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 3 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 2 });
-	dice.AddDice({ sides, 6 });
-	dice.AddDice({ sides, 4 });
+	dice[0].SetValue(3);
+	dice[1].SetValue(1);
+	dice[2].SetValue(2);
+	dice[3].SetValue(6);
+	dice[4].SetValue(4);
 
 	EXPECT_EQ(category->CheckScore(dice), 3);
 }
 
-TEST(UpperCategoryTest, CheckScoreFoursTest)
+TEST_F(UpperCategoryTest, CheckScoreFoursTest)
 {
-	int score = -1;
+	category = new Fours();
 
-	Category* category = new Fours();
-
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 4 });
-	dice.AddDice({ sides, 4 });
-	dice.AddDice({ sides, 4 });
-	dice.AddDice({ sides, 4 });
-	dice.AddDice({ sides, 4 });
+	dice[0].SetValue(4);
+	dice[1].SetValue(4);
+	dice[2].SetValue(4);
+	dice[3].SetValue(4);
+	dice[4].SetValue(4);
 				 
 	EXPECT_EQ(category->CheckScore(dice), 20);
 }
 
-TEST(UpperCategoryTest, CheckScoreFivesTest)
+TEST_F(UpperCategoryTest, CheckScoreFivesTest)
 {
-	int score = -1;
+	category = new Fives();
 
-	Category* category = new Fives();
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 5 });
-	dice.AddDice({ sides, 5 });
-	dice.AddDice({ sides, 2 });
-	dice.AddDice({ sides, 6 });
-	dice.AddDice({ sides, 4 });
+	dice[0].SetValue(5);
+	dice[1].SetValue(5);
+	dice[2].SetValue(2);
+	dice[3].SetValue(6);
+	dice[4].SetValue(4);
 
 	EXPECT_EQ(category->CheckScore(dice), 10);
 }
 
-TEST(UpperCategoryTest, CheckScoreSixesTest)
+TEST_F(UpperCategoryTest, CheckScoreSixesTest)
 {
-	int score = -1;
+	category = new Sixes();
 
-	Category* category = new Sixes();
-
-	int sides = 6;
-
-	Dice dice;
-	dice.AddDice({ sides, 3 });
-	dice.AddDice({ sides, 1 });
-	dice.AddDice({ sides, 2 });
-	dice.AddDice({ sides, 6 });
-	dice.AddDice({ sides, 4 });
+	dice[0].SetValue(3);
+	dice[1].SetValue(1);
+	dice[2].SetValue(2);
+	dice[3].SetValue(6);
+	dice[4].SetValue(4);
 
 	EXPECT_EQ(category->CheckScore(dice), 6);
 }

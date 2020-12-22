@@ -6,27 +6,12 @@
 class DieTest : public testing::Test
 {
 protected:
-	// Per-test-suite set-up.
-	// Called before the first test in this test suite.
-	// Can be omitted if not needed.
-	static void SetUpTestSuite()
-	{
-	}
 
-	// Per-test-suite tear-down.
-	// Called after the last test in this test suite.
-	// Can be omitted if not needed.
-	static void TearDownTestSuite()
-	{
-	}
-
-	// You can define per-test set-up logic as usual.
 	virtual void SetUp()
 	{
 		die = new Die(sides, value);
 	}
 
-	// You can define per-test tear-down logic as usual.
 	virtual void TearDown()
 	{
 		delete die;
@@ -54,13 +39,12 @@ TEST_F(DieTest, ConstructorTest1)
 	Die defDie(sides);
 
 	EXPECT_EQ(defDie.Sides(), sides);
-	EXPECT_EQ(defDie.Value(), value);
+	EXPECT_EQ(defDie.Value(), defaultValue);
 	EXPECT_EQ(defDie.IsHeld(), defaultHeld);
 }
 
 TEST_F(DieTest, ConstructorTest2)
 {
-
 	EXPECT_EQ(die->Sides(), sides);
 	EXPECT_EQ(die->Value(), value);
 	EXPECT_EQ(die->IsHeld(), defaultHeld);
