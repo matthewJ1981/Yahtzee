@@ -7,7 +7,8 @@ Game::Game() :
 	playing(true),
 	currentRound(1),
 	currentPlayer(0),
-	currentRoll(0)
+	currentRoll(0),
+	indexToScore(-1)
 {
 	ResetDice();
 }
@@ -35,11 +36,13 @@ void Game::Input()
 	}
 	else if (state == HOLD)
 	{
+		//std::cin ...
 		diceToHold.push_back(1);
 		std::sort(diceToHold.begin(), diceToHold.end());
 	}
-	else
+	else if (state == SCORE)
 	{
+		indexToScore = 0; //std::cin...
 
 	}
 }
@@ -65,27 +68,25 @@ void Game::Update()
 			readyDice[i].SetHeld(true);
 		}
 
-		for (int i = 0; i < (int)readyDice.Size(); ++i)
+		for (int i = 0; i < (int)readyDice.size(); ++i)
 			if (readyDice[i].IsHeld())
 			{
-				//Die d = readyDice[i];
-				//d.SetHeld(true);
 				heldDice.AddDice(readyDice[i]);
-				//std::cout << "\nREMOVE\n";
 				readyDice.RemoveDice(i);
 			}
 
-		for (int i = 0; i < (int)readyDice.Size(); ++i)
+		/*for (int i = 0; i < (int)readyDice.size(); ++i)
 			std::cout << readyDice[i].IsHeld() << " ";
 		std::cout << "\n";
-		for (int i = 0; i < (int)heldDice.Size(); ++i)
+		for (int i = 0; i < (int)heldDice.size(); ++i)
 			std::cout << heldDice[i].IsHeld() << " ";
-		std::cout << "\n";
+		std::cout << "\n";*/
 		diceToHold.clear();
 	}
-	else
+	else if (state == SCORE)
 	{
-		//currentRound++;
+		players[currentPlayer].SetScore(indexToScore, readyDice + heldDice);
+		
 	}
 }
 
@@ -96,17 +97,34 @@ void Game::Draw()
 		std::cout << "ReadyDice: " << readyDice << "\n";
 		std::cout << "HeldDice: " << heldDice << "\n";
 
-		std::cout << "Choose dice to hold[1] or score[2]";
+		std::cout << "Choose dice to hold[1] or score[2]: ";
 	}
 	else if (state == PREHOLD)
 	{
 		std::cout << "Enter the numbers of the dice to hold: ";
 		state = HOLD;
 	}
+	else if (state == PRESCORE)
+	{
+		std::cout << "Select a category to score: ";
+		std::vector<int> scores = players[currentPlayer].CheckScore(readyDice + heldDice);
+		for (size_t i = 0; i < scores.size(); ++i)
+			std::cout << ScoreCard::EnumToString((int)i) << ": " << scores[i] << "\n";
+
+		std::cout << "\n";
+		state = SCORE;
+	}
 	else if (state == HOLD)
 	{
-		std::cout << "ReadyDice: " << readyDice << "\n";
+		//std::cout << "ReadyDice: " << readyDice << "\n";
 		std::cout << "HeldDice: " << heldDice << "\n";
+		state = ROLLING;
+	}
+	else if (state == SCORE)
+	{
+		std::vector<int> scores = players[currentPlayer].GetScores();
+		for (size_t i = 0; i < scores.size(); ++i)
+			std::cout << ScoreCard::EnumToString((int)i) << ": " << scores[i] << "\n";
 		state = ROLLING;
 	}
 }
@@ -146,9 +164,7 @@ void Game::IncrementRoll()
 void Game::ResetDice()
 {
 	std::cout << "Reset\n";
-	readyDice.Clear();
-	for (int i = 0; i < 5; ++i)
-		readyDice.AddDice();
+	readyDice.Reset();
 	heldDice.Clear();
 	diceToHold.clear();
 }

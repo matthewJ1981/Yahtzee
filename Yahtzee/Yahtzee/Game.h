@@ -50,4 +50,5 @@ private:
 	Dice heldDice;
 	std::vector<int> diceToHold;
 	int currentRoll;
+	int indexToScore;
 };

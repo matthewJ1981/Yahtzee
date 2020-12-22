@@ -2,16 +2,16 @@
 #include <algorithm>
 #include <assert.h>
 
-Dice::Dice(int numDice, int sides)
+Dice::Dice(int numDice, int sides) : defaultSize(5), defaultSides(6)
 {
 	for (int i = 0; i < numDice; ++i)
 		dice.push_back(sides);
 }
 
-void Dice::AddDice(int sides, int value)
-{
-	dice.push_back({ sides, value });
-}
+//void Dice::AddDice(int sides, int value)
+//{
+//	dice.push_back({ sides, value });
+//}
 
 void Dice::AddDice(const Die& d)
 {
@@ -35,6 +35,23 @@ void Dice::Clear()
 	dice.clear();
 }
 
+void Dice::Reset()
+{
+	Clear();
+
+	for (int i = 0; i < defaultSize; ++i)
+		dice.push_back(Die());
+}
+
+Dice Dice::operator+(const Dice& rhs) const
+{
+	Dice d = *this;
+	for (int i = 0; i < (int)rhs.size(); ++i)
+		d.AddDice(rhs[i]);
+
+	return d;
+}
+
 
 //const std::vector<int> Dice::Values() const
 //{
@@ -49,9 +66,9 @@ void Dice::Clear()
 //
 std::ostream& operator<<(std::ostream& out, const Dice& d)
 {
-	for (const Die& d : d.GetDice())
+	for (const Die& d : d.dice)
 	{
-		out << d.Value() << " ";
+		out << d << " ";
 	}
 
 	return out;

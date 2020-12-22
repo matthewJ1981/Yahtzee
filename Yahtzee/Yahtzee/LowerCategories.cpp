@@ -8,16 +8,16 @@ int ThreeOfKind::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 	int total = 1;
 	bool threeOfKind = false;
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
-			score += die.Value();
+			temp += die.Value();
 
 			int currentValue = die.Value();
 			if (currentValue == previousValue)
@@ -33,7 +33,7 @@ int ThreeOfKind::CheckScore(const Dice& dice) const
 		} );
 
 	if (threeOfKind)
-		return score;
+		return temp;
 	else
 		return 0;
 }
@@ -43,16 +43,16 @@ int FourOfKind::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 	int total = 1;
 	bool fourOfKind = false;
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
-			score += die.Value();
+			temp += die.Value();
 
 			int currentValue = die.Value();
 			if (currentValue == previousValue)
@@ -68,7 +68,7 @@ int FourOfKind::CheckScore(const Dice& dice) const
 		});
 
 	if (fourOfKind)
-		return score;
+		return temp;
 	else
 		return 0;
 }
@@ -78,19 +78,19 @@ int FullHouse::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 
-	int numDice = (int)d.size();
+	int numDice = (int)tempDice.size();
 	int total[5] = { 1, 1, 1, 1, 1 };
 	int currentTotal = -1;
 
 	for(int i = 0; i < numDice; ++i)
 	{
-		int currentValue = d[i].Value();
+		int currentValue = tempDice[i].Value();
 		if (currentValue == previousValue)
 		{
 			total[currentTotal]++;
@@ -113,13 +113,13 @@ int SmallStraight::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 
 	int total = 1;
 	bool smStraight = false;
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
 			if (currentValue != previousValue)
@@ -151,13 +151,13 @@ int LargeStraight::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 
 	int total = 1;
 	bool lrgStraight = false;
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
 			if (currentValue != previousValue)
@@ -186,12 +186,12 @@ int LargeStraight::CheckScore(const Dice& dice) const
 
 int Yahtzee::CheckScore(const Dice& dice) const
 {
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
 	int previousValue = -1;
 	int total = 1;
 	bool yahtzee = false;
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
 			if (currentValue == previousValue)
@@ -216,15 +216,16 @@ int Chance::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
-	std::vector<Die> d = dice.GetDice();
-	std::sort(d.begin(), d.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+	int temp = 0;
 
-	std::for_each(d.begin(), d.end(), [&](const Die& die)
+	Dice tempDice = dice;
+	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
+
+	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
 		{
 			int currentValue = die.Value();
-			score += currentValue;
+			temp += currentValue;
 		});
 
-	return score;
+	return temp;
 }

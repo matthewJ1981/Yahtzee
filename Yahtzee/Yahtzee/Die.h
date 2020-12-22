@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Die
 {
 public:
@@ -13,6 +15,8 @@ public:
 	void SetHeld(int h) { isHeld = h; }
 	bool operator< (const Die& rhs) { return value < rhs.value; }
 	void SetValue(int v) { value = v; }
+
+	friend std::ostream& operator << (std::ostream& out, const Die& die);
 private:
 	int value;
 	int sides;

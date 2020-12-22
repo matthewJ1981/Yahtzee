@@ -32,12 +32,12 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest1)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
-
+	dice.AddDice({ sides, 4 });
+	dice.AddDice({ sides, 4 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 5 });
+						  
 	EXPECT_EQ(category->CheckScore(dice), 23);
 }
 
@@ -50,12 +50,12 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest2)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 3);
-
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 3 });
+						   
 	EXPECT_EQ(category->CheckScore(dice), 0);
 }
 
@@ -68,12 +68,12 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest3)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 6);
-
+	dice.AddDice({ sides, 4 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 5 });
+	dice.AddDice({ sides, 6 });
+				
 	EXPECT_EQ(category->CheckScore(dice), 25);
 }
 
@@ -86,12 +86,12 @@ TEST(LowerCategoryTest, CheckScoreThreeOfKindTest4)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 6);
-
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+				   
 	EXPECT_EQ(category->CheckScore(dice), 10);
 }
 
@@ -104,12 +104,12 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest1)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 5);
-
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 5 });
+				 
 	EXPECT_EQ(category->CheckScore(dice), 9);
 }
 
@@ -122,11 +122,11 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest2)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
 
 	EXPECT_EQ(category->CheckScore(dice), 5);
 }
@@ -140,11 +140,11 @@ TEST(LowerCategoryTest, CheckScoreFourOfKindTest3)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 5);
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 4 });
+	dice.AddDice({ sides, 5 });
 
 	EXPECT_EQ(category->CheckScore(dice), 0);
 }
@@ -158,11 +158,11 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest1)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 5);
-	dice.AddDice(sides, 5);
+	dice.AddDice({ sides, 1 } );
+	dice.AddDice({ sides, 1 } );
+	dice.AddDice({ sides, 1 } );
+	dice.AddDice({ sides, 5 } );
+	dice.AddDice({ sides, 5 } );
 
 	EXPECT_EQ(category->CheckScore(dice), 25);
 }
@@ -176,12 +176,12 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest2)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 3);
-	dice.AddDice(sides, 5);
-
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 3 });
+	dice.AddDice({ sides, 5 });
+				 { 		    }
 	EXPECT_EQ(category->CheckScore(dice), 0);
 }
 
@@ -194,12 +194,12 @@ TEST(LowerCategoryTest, CheckScoreFullHouseTest3)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 3);
-	dice.AddDice(sides, 3);
-	dice.AddDice(sides, 5);
-
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 3 });
+	dice.AddDice({ sides, 3 });
+	dice.AddDice({ sides, 5 });
+						    
 	EXPECT_EQ(category->CheckScore(dice), 0);
 }
 
@@ -212,11 +212,11 @@ TEST(LowerCategoryTest, CheckScoreSmallStraightTest)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 2);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 2);
-	dice.AddDice(sides, 3);
-	dice.AddDice(sides, 4);
+	dice.AddDice({ sides, 2 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 2 });
+	dice.AddDice({ sides, 3 });
+	dice.AddDice({ sides, 4 });
 
 	EXPECT_EQ(category->CheckScore(dice), 30);
 }
@@ -230,11 +230,11 @@ TEST(LowerCategoryTest, CheckScoreLargeStraightTest)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 2);
-	dice.AddDice(sides, 3);
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 5);
+	dice.AddDice({ sides, 1 } );
+	dice.AddDice({ sides, 2 } );
+	dice.AddDice({ sides, 3 } );
+	dice.AddDice({ sides, 4 } );
+	dice.AddDice({ sides, 5 } );
 
 	EXPECT_EQ(category->CheckScore(dice), 40);
 }
@@ -248,11 +248,11 @@ TEST(LowerCategoryTest, CheckScoreYahtzeeTest)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 6);
-	dice.AddDice(sides, 6);
-	dice.AddDice(sides, 6);
-	dice.AddDice(sides, 6);
-	dice.AddDice(sides, 6);
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 6 });
 
 	EXPECT_EQ(category->CheckScore(dice), 50);
 }
@@ -266,11 +266,11 @@ TEST(LowerCategoryTest, CheckScoreChanceTest)
 	int sides = 6;
 
 	Dice dice;
-	dice.AddDice(sides, 4);
-	dice.AddDice(sides, 1);
-	dice.AddDice(sides, 6);
-	dice.AddDice(sides, 2);
-	dice.AddDice(sides, 6);
+	dice.AddDice({ sides, 4 });
+	dice.AddDice({ sides, 1 });
+	dice.AddDice({ sides, 6 });
+	dice.AddDice({ sides, 2 });
+	dice.AddDice({ sides, 6 });
 
 	EXPECT_EQ(category->CheckScore(dice), 19);
 }

@@ -15,12 +15,12 @@ TEST(ScoredCardTest, SetScoreTest)
 	ScoreCard scoreCard;
 
 	Dice dice;
-	dice.AddDice(6, 6);
-	dice.AddDice(6, 6);
-	dice.AddDice(6, 6);
-	dice.AddDice(6, 6);
-	dice.AddDice(6, 6);
-	
+	dice.AddDice({ 6, 6 });
+	dice.AddDice({ 6, 6 });
+	dice.AddDice({ 6, 6 });
+	dice.AddDice({ 6, 6 });
+	dice.AddDice({ 6, 6 });
+					    
 	scoreCard.SetScore((int)ALL::SIXES, dice);
 	scoreCard.SetScore((int)ALL::YAHTZEE, dice);
 	scoreCard.SetScore((int)ALL::LARGESTRAIGHT, dice);

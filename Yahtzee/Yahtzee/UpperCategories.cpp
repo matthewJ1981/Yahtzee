@@ -8,12 +8,11 @@ int Ones::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 1) ++score; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 1) ++temp; });
 
-	return score;
+	return temp;
 }
 
 int Twos::CheckScore(const Dice& dice) const
@@ -21,12 +20,11 @@ int Twos::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 2) score += 2; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 2) temp += 2; });
 
-	return score;
+	return temp;
 }
 
 int Threes::CheckScore(const Dice& dice) const
@@ -34,12 +32,11 @@ int Threes::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 3) score += 3; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 3) temp += 3; });
 
-	return score;
+	return temp;
 }
 
 int Fours::CheckScore(const Dice& dice) const
@@ -47,12 +44,11 @@ int Fours::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 4) score += 4; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 4) temp += 4; });
 
-	return score;
+	return temp;
 }
 
 int Fives::CheckScore(const Dice& dice) const
@@ -60,12 +56,11 @@ int Fives::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 5) score += 5; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 5) temp += 5; });
 
-	return score;
+	return temp;
 }
 
 int Sixes::CheckScore(const Dice& dice) const
@@ -73,10 +68,9 @@ int Sixes::CheckScore(const Dice& dice) const
 	if (score > -1)
 		return -1;
 
-	int score = 0;
+	int temp = 0;
 
-	std::vector<Die> d = dice.GetDice();
-	std::for_each(d.begin(), d.end(), [&](const Die& die) {if (die.Value() == 6) score += 6; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 6) temp += 6; });
 
-	return score;
+	return temp;
 }

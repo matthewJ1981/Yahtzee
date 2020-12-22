@@ -54,7 +54,7 @@ std::vector<int> Lower::CheckScores(const Dice& dice, std::vector<int> upperCate
 		//Force scoring of upper section or allow options of lower per joker rules
 		if (categories[5]->Score() == 50 || categories[5]->Score() == 0)
 		{
-			int upperIndex = dice.GetDice()[0].Value() - 1;
+			int upperIndex = dice[0].Value() - 1;
 
 			if (upperCategories[upperIndex] == -1)
 			{

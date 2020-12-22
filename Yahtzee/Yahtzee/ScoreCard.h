@@ -20,7 +20,7 @@ public:
 	int Tally();
 	void AddBonus() { bonus += 100; }
 	int GetBonus() { return bonus; }
-	std::string EnumToString(int cat)
+	static std::string EnumToString(int cat)
 	{
 		switch ((int)cat)
 		{
