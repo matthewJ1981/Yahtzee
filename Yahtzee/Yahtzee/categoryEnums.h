@@ -40,3 +40,7 @@ enum class ALL
 	CHANCE
 };
 
+UPPER operator++(UPPER upper)
+{
+	return UPPER(int(upper) + 1);
+}
