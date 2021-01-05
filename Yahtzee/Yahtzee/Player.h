@@ -8,9 +8,9 @@
 class Player
 {
 public:
-	Player(std::string n);
+	Player(std::string n, bool c);
 	std::string Name() const { return name; }
-
+	bool Iscomputer() const { return isComputer; }
 	int Tally();
 	//const ScoreCard& GetScoreCard() const { return scoreCard; }
 	void SetScore(int index, const Dice& dice);
@@ -20,5 +20,6 @@ public:
 	
 private:
 	std::string name;
+	bool isComputer;
 	ScoreCard scoreCard;
 };

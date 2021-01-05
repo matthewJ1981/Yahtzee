@@ -1,6 +1,9 @@
 #include "Game.h"
 #include "ScoreCard.h"
 #include <algorithm>
+#include <sstream>
+//#include "C:\dev\include\util\input.h"
+#include <util\input.h>
 
 Game::Game() :
 	roundCount(13),
@@ -8,7 +11,8 @@ Game::Game() :
 	currentRound(1),
 	currentPlayer(0),
 	currentRoll(0),
-	indexToScore(-1)
+	indexToScore(-1),
+	playerScored(false)
 {
 	ResetDice();
 }
@@ -23,21 +27,56 @@ void Game::Input()
 	{
 		//After dice roll, choose hold[1] or score[2]
 		//std::cin ...
-		int input = 1;
-
-		if (input == 1)
+		int choice = -1;
+		if (!players[currentPlayer].Iscomputer())
 		{
-			state = PREHOLD;
+			std::string input;
+			std::getline(std::cin, input);
+			std::stringstream ss(input);
+			ss >> choice;
 		}
 		else
 		{
+			; // Computer logic
+		}
+
+		if (choice == 1)
+		{
+			state = PREHOLD;
+		}
+		else if (choice == 2)
+		{
 			state = PRESCORE;
+		}
+		else
+		{
+			//;
 		}
 	}
 	else if (state == HOLD)
 	{
-		//std::cin ...
-		diceToHold.push_back(1);
+
+		std::string dice = util::input("");
+		std::istringstream ss(dice);
+		//std::vector<int> dNums;
+		int diceNum = -1;
+		while (ss >> diceNum)
+		{
+			if (diceNum >= 0 && diceNum < int(readyDice.size()))
+			{
+				diceToHold.push_back(diceNum);
+			}
+			else
+			{
+				diceToHold.clear();
+				state = PREHOLD;
+				break;
+			}
+		}
+
+		if (diceToHold.empty())
+			state = PREHOLD;
+
 		std::sort(diceToHold.begin(), diceToHold.end());
 	}
 	else if (state == SCORE)
@@ -59,7 +98,6 @@ void Game::Update()
 	}
 	else if (state == HOLD)
 	{
-		std::cout << "\nIN HOLD UPDATE\n";
 		for (int i = 0; i < (int)diceToHold.size(); ++i)
 		{
 			readyDice[i].SetHeld(true);
@@ -67,17 +105,24 @@ void Game::Update()
 
 		for (int i = 0; i < (int)readyDice.size(); ++i)
 			if (readyDice[i].IsHeld())
-			{
 				heldDice.AddDice(readyDice[i]);
+
+
+		for (int i = 0; i < readyDice.size(); ++i)
+		{
+			if (readyDice[i].IsHeld())
+			{
 				readyDice.RemoveDice(i);
+				--i;
 			}
+		}
 
 		diceToHold.clear();
 	}
 	else if (state == SCORE)
 	{
 		players[currentPlayer].SetScore(indexToScore, readyDice + heldDice);
-		
+		playerScored = true;
 	}
 }
 
@@ -130,18 +175,30 @@ bool Game::GameOver()
 }
 void Game::GetPlayers()
 {
-	players.push_back({ "Bob" });
-	players.push_back({ "Tim" });
+
+	int numPlayers = util::inputInt("How many players?");
+	for (int i = 0; i < numPlayers; ++i)
+	{
+		if (util::inputChar("Is player " + std::to_string(i + 1) + " a person? ") == 'Y')
+		{
+			players.push_back({ util::input("Enter the player's name: "), false });
+		}
+	}
+	std::cout << numPlayers << "\n";
+
+	//players.push_back({ "Bob", false });
+	//players.push_back({ "Tim", false });
 }
 
 void Game::IncrementRoll()
 {
 	currentRoll++;
-	if (currentRoll > 3)
+	if (currentRoll > 3 || playerScored)
 	{
 		ResetDice();
 		currentRoll = 1;
 		currentPlayer++;
+		playerScored = false;
 	}
 
 	if (currentPlayer > (int)players.size() - 1)

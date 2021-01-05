@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Dice.h"
 
-Player::Player(std::string n) : name(n)
+Player::Player(std::string n, bool c) : name(n), isComputer(c)
 {
 	//ResetDice();
 }

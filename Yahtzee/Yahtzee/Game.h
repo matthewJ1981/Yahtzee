@@ -27,6 +27,7 @@ public:
 	void ResetDice();
 	bool GameOver();
 	void RollDice() { readyDice.Roll(); }
+	//bool PlayerScored() { return playerScored; }
 
 	//bool PlayerScored() { return playerScored; }
 
@@ -53,4 +54,5 @@ private:
 
 	std::vector<int> diceToHold;	
 	int indexToScore;
+	bool playerScored;
 };

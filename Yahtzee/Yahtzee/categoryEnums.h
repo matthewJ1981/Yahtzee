@@ -39,8 +39,3 @@ enum class ALL
 	YAHTZEE,
 	CHANCE
 };
-
-UPPER operator++(UPPER upper)
-{
-	return UPPER(int(upper) + 1);
-}

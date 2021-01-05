@@ -9,7 +9,7 @@ protected:
 
 	virtual void SetUp()
 	{
-		player = new Player("Fred");
+		player = new Player("Fred", true);
 	}
 
 	virtual void TearDown()
@@ -25,12 +25,14 @@ protected:
 TEST_F(PlayerTest, ConstructorTest)
 {
 	EXPECT_EQ(player->Name(), name);
+	EXPECT_EQ(player->Iscomputer(), true);
 }
 
 TEST_F(PlayerTest, TalyTest)
 {
 	EXPECT_EQ(player->Name(), name);
 	EXPECT_EQ(player->Tally(), 0);
+	EXPECT_EQ(player->Iscomputer(), true);
 }
 
 TEST_F(PlayerTest, SetScoreTest)
@@ -38,10 +40,12 @@ TEST_F(PlayerTest, SetScoreTest)
 	player->SetScore(0, dice);
 	EXPECT_EQ(player->Name(), name);
 	EXPECT_EQ(player->Tally (), 5);
+	EXPECT_EQ(player->Iscomputer(), true);
 }
 
 TEST_F(PlayerTest, CheckScoreTest)
 {
 	EXPECT_EQ(player->Name(), name);
 	EXPECT_EQ(player->CheckScore(dice)[0], 5);
+	EXPECT_EQ(player->Iscomputer(), true);
 }
