@@ -7,13 +7,14 @@
 class Dice
 {
 public:
-	explicit Dice(int numDice = 5, int sides = 6);
+	explicit Dice(int numDice = 0, int sides = 6);
 
 	//void AddDice(int sides = 6, int value = 1);
 	void AddDice(const Die& d);
 	void RemoveDice(int index);
 	void Roll();
 	int size() const { return (int)dice.size(); }
+	bool empty() const { return dice.size() == 0; }
 	Die& operator[](int i){ return dice[i]; }
 	const Die& operator[](int i) const { return dice[i]; }
 	//const std::vector<int> Values() const;

@@ -17,7 +17,7 @@ protected:
 		delete dice;
 	}
 
-	static constexpr int defaultSize = 5;
+	static constexpr int defaultSize = 0;
 	static constexpr int defaultSides = 6;
 	static constexpr int defaultValue = 1;
 	static constexpr int defaultHeld = false;
@@ -31,7 +31,7 @@ protected:
 TEST_F(DiceTest, DefaultConstructorTest)
 {
 	EXPECT_EQ(defaultDice.size(), defaultSize);
-	EXPECT_EQ(defaultDice[0].Value(), defaultValue);
+	EXPECT_EQ(defaultDice.empty(), true);
 }
 
 TEST_F(DiceTest, ConstructorDefaultSidesTest)
@@ -40,6 +40,7 @@ TEST_F(DiceTest, ConstructorDefaultSidesTest)
 
 	EXPECT_EQ(dice.size(), numDice);
 	EXPECT_EQ(dice[0].Value(), 1);
+	EXPECT_EQ(dice.empty(), false);
 
 	for (Die d : dice)
 	{
@@ -53,6 +54,7 @@ TEST_F(DiceTest, ConstructorTest)
 {
 	EXPECT_EQ(dice->size(), numDice);
 	EXPECT_EQ((*dice)[0].Value(), defaultValue);
+	EXPECT_EQ(dice->empty(), false);
 
 	for (Die d : *dice)
 	{
@@ -70,6 +72,7 @@ TEST_F(DiceTest, AddDiceTest)
 	EXPECT_EQ(dice->size(), numDice + 1);
 	EXPECT_EQ((*dice)[dice->size() - 1].Sides(), defaultSides);
 	EXPECT_EQ((*dice)[dice->size() - 1].Value(), defaultValue);
+	EXPECT_EQ(dice->empty(), false);
 }
 
 TEST_F(DiceTest, RemoveDiceTest)
@@ -79,6 +82,7 @@ TEST_F(DiceTest, RemoveDiceTest)
 	EXPECT_EQ(dice->size(), numDice - 1);
 	EXPECT_EQ((*dice)[0].Sides(), numSides);
 	EXPECT_EQ((*dice)[0].Value(), defaultValue);
+	EXPECT_EQ(dice->empty(), false);
 }
 
 TEST_F(DiceTest, RollDiceTest)
@@ -89,6 +93,8 @@ TEST_F(DiceTest, RollDiceTest)
 	dice->Roll();
 
 	EXPECT_EQ(dice->size(), numDice);
+	EXPECT_EQ(dice->empty(), false);
+
 	for (Die d : *dice)
 	{
 		EXPECT_GE(d.Value(), minValue);

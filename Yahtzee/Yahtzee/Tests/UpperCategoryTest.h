@@ -7,7 +7,7 @@
 class UpperCategoryTest : public testing::Test
 {
 protected:
-
+	UpperCategoryTest() : dice(5) {}
 	virtual void SetUp()
 	{
 	}

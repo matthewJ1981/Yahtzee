@@ -20,7 +20,7 @@ void Section::SetScore(int index, int score)
 	categories[index]->SetScore(score);
 }
 
-std::vector<int> Section::GetScores()
+std::vector<int> Section::GetScores() const
 {
 	std::vector<int> scoringCategories;
 

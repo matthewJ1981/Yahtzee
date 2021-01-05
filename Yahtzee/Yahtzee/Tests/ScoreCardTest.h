@@ -7,7 +7,7 @@
 class ScoreCardTest : public testing::Test
 {
 protected:
-
+	ScoreCardTest() : dice(5) {}
 	virtual void SetUp()
 	{
 	}
@@ -28,8 +28,6 @@ TEST_F(ScoreCardTest, ConstructorTest)
 
 TEST_F(ScoreCardTest, SetScoreTest)
 {
-	ScoreCard scoreCard;
-
 	dice[0].SetValue(6);
 	dice[1].SetValue(6);
 	dice[2].SetValue(6);

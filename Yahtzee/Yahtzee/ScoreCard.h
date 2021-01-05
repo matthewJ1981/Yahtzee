@@ -6,20 +6,12 @@
 class ScoreCard
 {
 public:
-
-	//ScoreCard() : upper(nullptr), lower(nullptr), total(0)
-	ScoreCard() : total(0), hasYahtzee(false), bonus(0)
-	{
-		//upper = new Upper();
-		//lower = new Lower();
-	}
+	ScoreCard() : total(0){}
 	std::vector<int> CheckScore(const Dice& dice) const;
+	std::vector<int> GetScores() const;
 
-	std::vector<int> GetScores();
 	void SetScore(int index, const Dice& dice);
 	int Tally();
-	void AddBonus() { bonus += 100; }
-	int GetBonus() { return bonus; }
 	static std::string EnumToString(int cat)
 	{
 		switch ((int)cat)
@@ -46,6 +38,4 @@ private:
 	Upper upper;
 	Lower lower;
 	int total;
-	int bonus;
-	bool hasYahtzee = false;
 };

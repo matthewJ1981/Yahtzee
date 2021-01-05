@@ -19,7 +19,7 @@ public:
 	void SetScore(int index, int score);
 
 	std::vector<int> CheckScores(const Dice& dice) const;
-	std::vector<int> GetScores();
+	std::vector<int> GetScores() const;
 
 	void CalcSubTotal();
 	virtual int Tally() = 0;

@@ -8,51 +8,57 @@
 class Game
 {
 public:
-	enum state
-	{
-		ROLLING,
-		ROLLED,
-		PREHOLD,
-		HOLD,
-		PRESCORE,
-		SCORE
-	};
+	//enum state
+	//{
+	//	ROLLING,
+	//	ROLLED,
+	//	PREHOLD,
+	//	HOLD,
+	//	PRESCORE,
+	//	SCORE
+	//};
 
 	Game();
-	void Input();
-	void Update();
-	void Draw();
+	//void Input();
+	//void Update();
+	//void Draw();
 
-	void GetPlayers();
-	void ResetDice();
-	bool GameOver();
-	void RollDice() { readyDice.Roll(); }
+
+	//void ResetDice();
+	//bool GameOver();
+	//void RollDice() { readyDice.Roll(); }
 	//bool PlayerScored() { return playerScored; }
 
 	//bool PlayerScored() { return playerScored; }
 
 	//void IncrementRound() { currentRound++;}
-	int CurrentRound() { return currentRound; }
+	//int CurrentRound() { return currentRound; }
 
 	//void IncrementPlayer() { currentPlayer++; }
 	//int CurrentPlayer() { return currentPlayer; }
 
-	void IncrementRoll();
-
+	//void IncrementRoll();
+	void Go();
+	
 
 private:
+	void Turn(Player& player);
+	void GetWinner();
+	void GetPlayers();
+	void GetStartingPlayer();
+
 	std::vector<Player> players;
-	int roundCount;
-	int state = ROLLING;
+	//int roundCount;
+	//int state = ROLLING;
 	//bool playing = true;
 	//bool playerScored = false;
 	int currentRound;
 	int currentPlayer;
-	int currentRoll;
-	Dice readyDice;
-	Dice heldDice;
+	//int currentRoll;
+	//Dice readyDice;
+	//Dice heldDice;
 
-	std::vector<int> diceToHold;	
-	int indexToScore;
-	bool playerScored;
+	//std::vector<int> diceToHold;	
+	//int indexToScore;
+	//bool playerScored;
 };
