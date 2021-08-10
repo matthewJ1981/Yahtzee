@@ -45,14 +45,19 @@ std::vector<std::pair<std::string, int>> Lower::CheckScores(const Dice& dice, co
 	//Check scores as normal, then check for yahtzee
 	std::vector<std::pair<std::string, int>> scores = Section::CheckScores(dice);
 
-	//Assume no yahtzee was rolled.  This will be checked later in setscore()
-	SetHasYahtzee(false);
+	//Check if a yahtzee was rolled
+	SetHasYahtzee(scores[(int)LOWER::YAHTZEE].second == Yahtzee::ScoreValue());
 
-	// Currently rolled a yahtzee
-	if (scores[(int)LOWER::YAHTZEE].second == Yahtzee::ScoreValue())
+	//Set yahtzee category as unscorable if it has already been scored
+	if (categories[(int)LOWER::YAHTZEE]->HasScored())
 	{
-		SetHasYahtzee(true);
-		// Already scored a yahtzee so show bonus as scoring option
+		scores[(int)LOWER::YAHTZEE].second = Category::Unscorable();
+	}
+
+	//See if bonus and joker rules apply
+	if (HasYahtzee())
+	{
+		//Get bonus for subsequent yahtzees
 		if (BonusEligible())
 		{
 			scores.push_back({ "Bonus", BONUSVALUE });
@@ -91,7 +96,6 @@ std::vector<std::pair<std::string, int>> Lower::CheckScores(const Dice& dice, co
 			}
 		}
 	}
-
 
 	return scores;
 }

@@ -221,46 +221,22 @@ int LargeStraight::CheckScore(const Dice& dice) const
 
 int Yahtzee::CheckScore(const Dice& dice) const
 {
-	Dice tempDice = dice;
-	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
-	int previousValue = -1;
-	int total = 1;
-	bool yahtzee = false;
-	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
-		{
-			int currentValue = die.Value();
-			if (currentValue == previousValue)
-				total++;
-			else
-			{
-				total = 1;
-				previousValue = currentValue;
-			}
+	int value = dice[0].Value();
+	for (const auto d : dice)
+		if (d.Value() != value)
+			return 0;
 
-			if (total >= 5)
-				yahtzee = true;
-		});
-
-	if (yahtzee)
-		return 50;
-	else
-		return 0;
+	return 50;
 }
+
 int Chance::CheckScore(const Dice& dice) const
 {
 	if (HasScored())
 		return UNSCORABLE;
 
 	int temp = 0;
-
-	Dice tempDice = dice;
-	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
-
-	std::for_each(tempDice.begin(), tempDice.end(), [&](const Die& die)
-		{
-			int currentValue = die.Value();
-			temp += currentValue;
-		});
+	for (const auto& d : dice)
+		temp += d.Value();
 
 	return temp;
 }
