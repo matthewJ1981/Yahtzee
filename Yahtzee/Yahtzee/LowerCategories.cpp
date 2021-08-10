@@ -3,10 +3,45 @@
 #include <algorithm>
 #include <vector>
 
+ThreeOfKind::ThreeOfKind()
+	:
+	Category("Three of a kind")
+{}
+
+FourOfKind::FourOfKind()
+	:
+	Category("Four of a kind")
+{}
+
+FullHouse::FullHouse()
+	:
+	Category("Full house")
+{}
+
+SmallStraight::SmallStraight()
+	:
+	Category("Small straight")
+{}
+
+LargeStraight::LargeStraight()
+	:
+	Category("Large straight")
+{}
+
+Yahtzee::Yahtzee()
+	:
+	Category("Yahtzee")
+{}
+
+Chance::Chance()
+	:
+	Category("Chance")
+{}
+
 int ThreeOfKind::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	int temp = 0;
 
@@ -40,8 +75,8 @@ int ThreeOfKind::CheckScore(const Dice& dice) const
 
 int FourOfKind::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	int temp = 0;
 
@@ -75,8 +110,8 @@ int FourOfKind::CheckScore(const Dice& dice) const
 
 int FullHouse::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	int temp = 0;
 
@@ -110,8 +145,8 @@ int FullHouse::CheckScore(const Dice& dice) const
 
 int SmallStraight::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	Dice tempDice = dice;
 	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
@@ -148,8 +183,8 @@ int SmallStraight::CheckScore(const Dice& dice) const
 
 int LargeStraight::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	Dice tempDice = dice;
 	std::sort(tempDice.begin(), tempDice.end(), [](const Die& a, const Die& b) {return a.Value() < b.Value(); });
@@ -213,8 +248,8 @@ int Yahtzee::CheckScore(const Dice& dice) const
 }
 int Chance::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
-		return -1;
+	if (HasScored())
+		return UNSCORABLE;
 
 	int temp = 0;
 

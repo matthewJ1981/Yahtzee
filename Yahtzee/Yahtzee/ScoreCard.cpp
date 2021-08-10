@@ -6,25 +6,28 @@
 #include "Category.h"
 #include "categoryEnums.h"
 
-std::vector<int> ScoreCard::CheckScore(const Dice& dice) const
+std::vector<std::pair<std::string, int>> ScoreCard::CheckScore(const Dice& dice) const
 {
 	// Check scoring options
-	std::vector<int> upperScoringCategories = upper.CheckScores(dice);
-	std::vector<int> lowerScoringCategories = lower.CheckScores(dice, upperScoringCategories);
+	std::vector<std::pair<std::string, int>> upperScoringCategories = upper.CheckScores(dice);
+	std::vector<std::pair<std::string, int>> lowerScoringCategories = lower.CheckScores(dice, upperScoringCategories);
 
-	std::vector<int> scoringCategories;
+	std::vector<std::pair<std::string, int>> scoringCategories;
 	std::move(upperScoringCategories.begin(), upperScoringCategories.end(), std::back_inserter(scoringCategories));
 	std::move(lowerScoringCategories.begin(), lowerScoringCategories.end(), std::back_inserter(scoringCategories));
 
 	return scoringCategories;
 }
 
-void ScoreCard::SetScore(int index, int score)
+bool ScoreCard::SetScore(int index, int score)
 {
 	if (index < (int)ALL::THREEOFAKIND)
 		upper.SetScore(index, score);
 	else
 		lower.SetScore(index - (int)ALL::THREEOFAKIND, score);
+
+	//////////////  MUST FIX THIS
+	return true;
 }
 
 std::vector<int> ScoreCard::GetScores() const

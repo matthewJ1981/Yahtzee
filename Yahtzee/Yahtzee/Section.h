@@ -18,7 +18,7 @@ public:
 	int Size() const { return (int)categories.size(); }
 	void SetScore(int index, int score);
 
-	std::vector<int> CheckScores(const Dice& dice) const;
+	std::vector<std::pair<std::string, int>>  CheckScores(const Dice& dice) const;
 	std::vector<int> GetScores() const;
 
 	void CalcSubTotal();

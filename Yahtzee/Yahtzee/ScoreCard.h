@@ -7,10 +7,10 @@ class ScoreCard
 {
 public:
 	ScoreCard() : total(0){}
-	std::vector<int> CheckScore(const Dice& dice) const;
+	std::vector<std::pair<std::string, int>> CheckScore(const Dice& dice) const;
 	std::vector<int> GetScores() const;
 
-	void SetScore(int index, int score);
+	bool SetScore(int index, int score);
 	int Tally();
 	static std::string EnumToString(int cat)
 	{

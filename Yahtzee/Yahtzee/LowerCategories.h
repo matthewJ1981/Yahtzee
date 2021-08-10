@@ -7,48 +7,52 @@
 class ThreeOfKind : public Category
 {
 public:
-	//ThreeOfKind(std::string n) : Category(n) {}
+	ThreeOfKind();
 	int CheckScore(const Dice& dice) const override;
 };
 
 class FourOfKind : public Category
 {
 public:
-	//FourOfKind(std::string n) : Category(n) {}
+	FourOfKind();
 	int CheckScore(const Dice& dice) const override;
 };
 
 class FullHouse : public Category
 {
 public:
-	//FullHouse(std::string n) : Category(n) {}
+	FullHouse();
+	static int ScoreValue() { return 25; }
 	int CheckScore(const Dice& dice) const override;
 };
 
 class SmallStraight : public Category
 {
 public:
-	//SmallStraight(std::string n) : Category(n) {}
+	SmallStraight();
+	static int ScoreValue() { return 30; }
 	int CheckScore(const Dice& dice) const override;
 };
 
 class LargeStraight : public Category
 {
 public:
-	//LargeStraight(std::string n) : Category(n) {}
+	LargeStraight();
+	static int ScoreValue() { return 40; }
 	int CheckScore(const Dice& dice) const override;
 };
 
 class Yahtzee : public Category
 {
 public:
-	//Yahtzee(std::string n) : Category(n) {}
+	Yahtzee();
+	static int ScoreValue() { return 50; }
 	int CheckScore(const Dice& dice) const override;
 };
 
 class Chance : public Category
 {
 public:
-	//Chance(std::string n) : Category(n) {}
+	Chance();
 	int CheckScore(const Dice& dice) const override;
 };

@@ -8,10 +8,10 @@
 Player::Player(std::string n, bool c) : name(n), isComputer(c)
 {}
 
-std::vector<int> Player::CheckScore(const Dice& dice) const
-{
-	return scoreCard.CheckScore(dice);
-}
+//std::vector<int> Player::CheckScore(const Dice& dice) const
+//{
+//	return scoreCard.CheckScore(dice);
+//}
 
 void Player::RollDice(Dice& dice) const
 {
@@ -83,15 +83,15 @@ std::vector<int> Player::GetDiceToMove(const Dice& dice) const
 	return diceToMove;
 }
 
-int Player::Tally()
-{
-	return scoreCard.Tally();
-}
-
-std::vector<int> Player::GetScores()
-{
-	return scoreCard.GetScores();
-}
+//int Player::Tally()
+//{
+//	return scoreCard.Tally();
+//}
+//
+//std::vector<int> Player::GetScores()
+//{
+//	return scoreCard.GetScores();
+//}
 
 void Player::HoldDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 {
@@ -136,15 +136,16 @@ void Player::UnholdDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 		}
 	}
 }
-bool Player::SetScore(int index, int score)
-{
-	scoreCard.SetScore(index, score);
-	return true;
-}
+
+//bool Player::SetScore(int index, int score)
+//{
+//	scoreCard.SetScore(index, score);
+//	return true;
+//}
 
 std::ostream& operator<<(std::ostream& out, Player& player)
 {
-	out << "Name: " << player.name << " Score: " << player.Tally();
+	out << "Name: " << player.name << " Score: " << player.scoreCard().Tally();
 	
 	return out;
 }

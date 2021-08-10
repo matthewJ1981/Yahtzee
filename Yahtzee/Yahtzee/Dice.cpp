@@ -8,11 +8,6 @@ Dice::Dice(int numDice, int sides) : defaultSize(5), defaultSides(6)
 		dice.push_back(sides);
 }
 
-//void Dice::AddDice(int sides, int value)
-//{
-//	dice.push_back({ sides, value });
-//}
-
 void Dice::AddDice(const Die& d)
 {
 	dice.push_back(d);

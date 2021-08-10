@@ -11,16 +11,16 @@ class Player
 public:
 	Player(std::string n, bool c);
 
-	int Tally();
+	//int Tally();
 	void HoldDice(Dice& rD, Dice& hD, std::vector<int> dTM);
 	void UnholdDice(Dice& rD, Dice& hD, std::vector<int> dTM);
-	bool SetScore(int index, int score);
+	//bool SetScore(int index, int score);
 	void RollDice(Dice& dice) const;
 	void HoldOrReady(Dice& rD, Dice& hD);
 	std::vector<int> GetDiceToMove(const Dice& dice) const;
 
-	std::vector<int> GetScores();
-	std::vector<int> CheckScore(const Dice& dice) const;
+	//std::vector<int> GetScores();
+	//std::vector<int> CheckScore(const Dice& dice) const;
 
 
 	std::string Name() const { return name; }
@@ -28,8 +28,9 @@ public:
 
 	friend std::ostream& operator << (std::ostream& out, Player& player);
 
+	inline ScoreCard& scoreCard() { return sCard; }
 private:
 	std::string name;
 	bool isComputer;
-	ScoreCard scoreCard;
+	ScoreCard sCard;
 };

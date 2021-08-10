@@ -89,7 +89,6 @@ void Game::Turn(Player& player)
 
 		std::cout << "ReadyDice: " << readyDice << "\n";
 		std::cout << "HeldDice: " << heldDice << "\n";
-		//player.CheckScore(readyDice + heldDice);
 
 		bool inputting = true;
 		while (inputting)
@@ -108,14 +107,15 @@ void Game::Turn(Player& player)
 			else if (choice == 2)
 			{
 				std::cout << "Scoring options\n";
-				std::vector<int> scores = player.CheckScore(readyDice + heldDice);
+				std::vector<std::pair<std::string, int>> scores = player.scoreCard().CheckScore(readyDice + heldDice);
 				for (size_t i = 0; i < scores.size(); ++i)
-					std::cout << i << ": " << ScoreCard::EnumToString((int)i) << ": " << scores[i] << "\n";
+					//std::cout << i << ": " << ScoreCard::EnumToString((int)i) << ": " << scores[i] << "\n";
+					std::cout << i << ": " << scores[i].first << ": " << scores[i].second << "\n";
 				std::cout << "\n";
 				int index = util::inputInt("Select category to score: ");
 
 				//  MUST CHECK BOUNDS
-				playerScored = player.SetScore(index, scores[index]);
+				playerScored = player.scoreCard().SetScore(index, scores[index].second);
 			}
 			else if (choice == 3)
 			{
@@ -139,7 +139,7 @@ void Game::GetWinner()
 
 	for (size_t i = 0; i < players.size(); ++i)
 	{
-		int score = players[i].Tally();
+		int score = players[i].scoreCard().Tally();
 		std::cout << players[i] << "\n";
 		if (score > max)
 		{
