@@ -23,6 +23,8 @@ public:
 	const std::string& Name() const { return name; }
 
 	int UpperCheckScore(const Dice& dice, int value) const;
+	int KindScore(const Dice& dice, int numSame) const;
+	bool StraightScore(const Dice& dice, int numConsec) const;
 protected:
 
 	int score;
