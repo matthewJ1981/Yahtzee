@@ -76,6 +76,9 @@ int FullHouse::CheckScore(const Dice& dice) const
 
 int SmallStraight::CheckScore(const Dice& dice) const
 {
+	if (HasScored())
+		return UNSCORABLE;
+
 	if (StraightScore(dice, 4))
 		return ScoreValue();
 
@@ -84,6 +87,9 @@ int SmallStraight::CheckScore(const Dice& dice) const
 
 int LargeStraight::CheckScore(const Dice& dice) const
 {
+	if (HasScored())
+		return UNSCORABLE;
+
 	if (StraightScore(dice, 5))
 		return ScoreValue();
 
