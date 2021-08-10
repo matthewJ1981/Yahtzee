@@ -58,7 +58,7 @@ void Game::Go()
 	GetPlayers();
 	GetStartingPlayer();
 
-	while (currentRound < totalRounds)
+	while (currentRound <= totalRounds)
 	{
 		std::cout << "Round: " << currentRound << "\n";
 		for (Player p : players)
@@ -109,7 +109,8 @@ void Game::Turn(Player& player)
 				std::cout << "Scoring options\n";
 				std::vector<std::pair<std::string, int>> scores = player.scoreCard().CheckScore(readyDice + heldDice);
 				for (size_t i = 0; i < scores.size(); ++i)
-					std::cout << i << ": " << scores[i].first << ": " << scores[i].second << "\n";
+					if (scores[i].second != Category::Unscorable())
+						std::cout << i << ": " << scores[i].first << ": " << scores[i].second << "\n";
 				std::cout << "\n";
 				do
 				{
