@@ -12,6 +12,8 @@ public:
 
 	int Tally() override;
 private:
+	static constexpr int BONUSTHRESHOLD = 63;
+	static constexpr int BONUSVALUE = 35;
 };
 
 class Lower : public Section

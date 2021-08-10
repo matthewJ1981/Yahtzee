@@ -24,8 +24,8 @@ Lower::Lower()
 int Upper::Tally()
 {
 	CalcSubTotal();
-	if (subtotal >= 63)
-		bonus = 35;
+	if (subtotal >= BONUSTHRESHOLD)
+		bonus = BONUSVALUE;
 
 	total = subtotal + bonus;
 	return total;
