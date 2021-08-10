@@ -13,7 +13,7 @@ public:
 	void AddDice(const Die& d);
 	void RemoveDice(int index);
 	void Roll();
-	int size() const { return (int)dice.size(); }
+	size_t size() const { return dice.size(); }
 	bool empty() const { return dice.size() == 0; }
 	Die& operator[](int i){ return dice[i]; }
 	const Die& operator[](int i) const { return dice[i]; }

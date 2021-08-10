@@ -5,14 +5,14 @@
 
 int Ones::CheckScore(const Dice& dice) const
 {
-	if (score > -1)
+	if (HasScored())
 		return -1;
 
-	int temp = 0;
+	int newScore = 0;
 
-	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 1) ++temp; });
+	std::for_each(dice.begin(), dice.end(), [&](const Die& die) {if (die.Value() == 1) ++newScore; });
 
-	return temp;
+	return newScore;
 }
 
 int Twos::CheckScore(const Dice& dice) const

@@ -19,19 +19,12 @@ std::vector<int> ScoreCard::CheckScore(const Dice& dice) const
 	return scoringCategories;
 }
 
-void ScoreCard::SetScore(int index, const Dice& dice)
+void ScoreCard::SetScore(int index, int score)
 {
-	std::vector<int> scoringCategories = CheckScore(dice);
-
-	bool test = lower.BonusEligibile();
-	if (scoringCategories[(int)ALL::YAHTZEE] == 50 && lower.BonusEligibile())
-		lower.IncrementBonus();
-
-	if (index < 6)
-		upper.SetScore(index, scoringCategories[index]);
+	if (index < (int)ALL::THREEOFAKIND)
+		upper.SetScore(index, score);
 	else
-		lower.SetScore(index - 6, scoringCategories[index]);
-
+		lower.SetScore(index - (int)ALL::THREEOFAKIND, score);
 }
 
 std::vector<int> ScoreCard::GetScores() const

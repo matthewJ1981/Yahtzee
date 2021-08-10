@@ -27,6 +27,6 @@ public:
 protected:
 	std::vector<Category*> categories;
 	int subtotal;
-	int bonus;
+	mutable int bonus;
 	int total;
 };

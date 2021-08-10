@@ -1,4 +1,4 @@
-#include "Player.h"
+	#include "Player.h"
 #include "Dice.h"
 #include <sstream>
 #include <algorithm>
@@ -95,17 +95,17 @@ std::vector<int> Player::GetScores()
 
 void Player::HoldDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 {
-	for (int i = 0; i < (int)diceToMove.size(); ++i)
+	for (size_t i = 0; i < diceToMove.size(); ++i)
 	{
 		dice1[diceToMove[i]].SetHeld(true);
 	}
 
-	for (int i = 0; i < (int)dice1.size(); ++i)
+	for (size_t i = 0; i < dice1.size(); ++i)
 		if (dice1[i].IsHeld())
 			dice2.AddDice(dice1[i]);
 
 
-	for (int i = 0; i < dice1.size(); ++i)
+	for (size_t i = 0; i < dice1.size(); ++i)
 	{
 		if (dice1[i].IsHeld())
 		{
@@ -117,17 +117,17 @@ void Player::HoldDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 
 void Player::UnholdDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 {
-	for (int i = 0; i < (int)diceToMove.size(); ++i)
+	for (size_t i = 0; i < diceToMove.size(); ++i)
 	{
 		dice1[diceToMove[i]].SetHeld(false);
 	}
 
-	for (int i = 0; i < (int)dice1.size(); ++i)
+	for (size_t i = 0; i < dice1.size(); ++i)
 		if (!dice1[i].IsHeld())
 			dice2.AddDice(dice1[i]);
 
 
-	for (int i = 0; i < dice1.size(); ++i)
+	for (size_t i = 0; i < dice1.size(); ++i)
 	{
 		if (!dice1[i].IsHeld())
 		{
@@ -136,9 +136,9 @@ void Player::UnholdDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
 		}
 	}
 }
-bool Player::SetScore(int index, const Dice& dice)
+bool Player::SetScore(int index, int score)
 {
-	scoreCard.SetScore(index, dice);
+	scoreCard.SetScore(index, score);
 	return true;
 }
 

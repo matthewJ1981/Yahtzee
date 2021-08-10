@@ -10,7 +10,7 @@ public:
 	std::vector<int> CheckScore(const Dice& dice) const;
 	std::vector<int> GetScores() const;
 
-	void SetScore(int index, const Dice& dice);
+	void SetScore(int index, int score);
 	int Tally();
 	static std::string EnumToString(int cat)
 	{

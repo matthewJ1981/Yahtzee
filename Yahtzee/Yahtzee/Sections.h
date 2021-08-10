@@ -18,12 +18,27 @@ class Lower : public Section
 {
 public:
 	Lower();
-	void IncrementBonus() { bonus += 100; }
+	void IncrementBonus() const { bonus += BONUSVALUE; }
 	int Tally() override;
-	bool BonusEligibile() const { return categories[(int)LOWER::YAHTZEE]->Score() == 50; }
+	bool BonusEligible() const { return categories[(int)LOWER::YAHTZEE]->Score() == YAHTZEEVALUE; }
 	std::vector<int> CheckScores(const Dice& dice, std::vector<int> upperCategories) const;
-private:
 
+	bool HasYahtzee() const { return yahtzee; }
+	void SetHasYahtzee(bool b) const { yahtzee = b; }
+
+	static int FullHouseValue() { return FULLHOUSEVALUE; }
+	static int SmallStraightValue() { return SMALLSTRAIGHTVALUE; }
+	static int LargeStraightValue() { return LARGESTRAUGHTVALUE; }
+	static int YahtzeeValue() { return YAHTZEEVALUE; }
+	static int BonusValue() { return BONUSVALUE; }
+
+private:
+	mutable bool yahtzee = false;
+	static constexpr int FULLHOUSEVALUE = 25;
+	static constexpr int SMALLSTRAIGHTVALUE = 30;
+	static constexpr int LARGESTRAUGHTVALUE = 40;
+	static constexpr int YAHTZEEVALUE = 50;
+	static constexpr int BONUSVALUE = 100;
 };
 
 

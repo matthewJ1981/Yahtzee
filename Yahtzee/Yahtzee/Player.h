@@ -14,7 +14,7 @@ public:
 	int Tally();
 	void HoldDice(Dice& rD, Dice& hD, std::vector<int> dTM);
 	void UnholdDice(Dice& rD, Dice& hD, std::vector<int> dTM);
-	bool SetScore(int index, const Dice& dice);
+	bool SetScore(int index, int score);
 	void RollDice(Dice& dice) const;
 	void HoldOrReady(Dice& rD, Dice& hD);
 	std::vector<int> GetDiceToMove(const Dice& dice) const;

@@ -42,43 +42,56 @@ int Lower::Tally()
 // This overridden method exists to enforce scoring options on successive yahtzees
 std::vector<int> Lower::CheckScores(const Dice& dice, std::vector<int> upperCategories) const
 {
+	//Check scores as normal, then check for yahtzee
 	std::vector<int> scores = Section::CheckScores(dice);
 
+	//Assume no yahtzee was rolled.  This will be checked later in setscore()
+	SetHasYahtzee(false);
+
 	// Currently rolled a yahtzee
-	if (scores[5] == 50)
+	if (scores[(int)LOWER::YAHTZEE] == YAHTZEEVALUE)
 	{
+		SetHasYahtzee(true);
 		// Already scored a yahtzee so show bonus as scoring option
-		if (categories[5]->Score() == 50)	
-			scores.push_back(100);
+		if (BonusEligible())
+		{
+			scores.push_back(BONUSVALUE);
+			IncrementBonus();
+		}
 
 		//Force scoring of upper section or allow options of lower per joker rules
-		if (categories[5]->Score() == 50 || categories[5]->Score() == 0)
+		if (categories[(int)LOWER::YAHTZEE]->HasScored())
 		{
+			//Value of first dice - 1(They are currently all the same value) 
+			//to access the index of the appropriate upper category
 			int upperIndex = dice[0].Value() - 1;
 
-			if (upperCategories[upperIndex] == -1)
+			//If the upper value has already been scored, the player can choose one of the lower sections to score
+			if (upperCategories[upperIndex] == Category::Unscorable())
 			{
-				if (scores[2] != -1)
-					scores[2] = 25;
+				if (scores[(int)LOWER::FULLHOUSE] != Category::Unscorable())
+					scores[(int)LOWER::FULLHOUSE] = FULLHOUSEVALUE;
 
-				if (scores[3] != -1)
-					scores[3] = 30;
+				if (scores[(int)LOWER::SMALLSTRAIGHT] != Category::Unscorable())
+					scores[(int)LOWER::SMALLSTRAIGHT] = SMALLSTRAIGHTVALUE;
 
-				if (scores[4] != -1)
-					scores[4] = 40;
+				if (scores[(int)LOWER::LARGESTRAIGHT] != Category::Unscorable())
+					scores[(int)LOWER::LARGESTRAIGHT] = LARGESTRAUGHTVALUE;
 			}
+			//Otherwise the player must score in the upper section
 			else
 			{
-				scores[0] = -1;
-				scores[1] = -1;
-				scores[2] = -1;
-				scores[3] = -1;
-				scores[4] = -1;
-				scores[5] = -1;
-				scores[6] = -1;
+				scores[(int)LOWER::THREEOFAKIND] = Category::Unscorable();
+				scores[(int)LOWER::FOUROFAKIND] = Category::Unscorable();
+				scores[(int)LOWER::FULLHOUSE] = Category::Unscorable();
+				scores[(int)LOWER::SMALLSTRAIGHT] = Category::Unscorable();
+				scores[(int)LOWER::LARGESTRAIGHT] = Category::Unscorable();
+				scores[(int)LOWER::YAHTZEE] = Category::Unscorable();
+				scores[(int)LOWER::CHANCE] = Category::Unscorable();
 			}
 		}
 	}
+
 
 	return scores;
 }

@@ -9,8 +9,6 @@ enum class LOWER
 	LARGESTRAIGHT,
 	YAHTZEE,
 	CHANCE
-
-
 };
 
 enum class UPPER
