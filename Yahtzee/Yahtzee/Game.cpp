@@ -12,16 +12,16 @@ Game::Game() :
 
 void Game::GetPlayers()
 {
-	int numPlayers = util::inputInt("How many players?");
+	int numPlayers = util::Input("How many players?", 1, 10);
 
 	for (int i = 0; i < numPlayers; ++i)
 	{
 		std::string name = util::input("Enter the player's name: ");
-		bool isComputer = util::inputChar("Is " + name + " a computer? ");
-			players.push_back({ name, isComputer });
+		bool isComputer = util::Input("Is " + name + " a computer? ") == 'Y';
+		players.push_back({ name, isComputer });
 	}
 
-	std::cerr << numPlayers << "\n";
+	//std::cerr << numPlayers << "\n";
 }
 
 void Game::GetStartingPlayer()
@@ -96,7 +96,7 @@ void Game::Turn(Player& player)
 			inputting = false;
 			int choice = -1;
 			if (currentRoll < 3)
-				choice = util::inputInt("Hold(1), Score(2), or Roll Again(3)");
+				choice = util::Input("Hold(1), Score(2), or Roll Again(3)", 1, 3);
 			else
 				choice = 2;
 
@@ -109,13 +109,15 @@ void Game::Turn(Player& player)
 				std::cout << "Scoring options\n";
 				std::vector<std::pair<std::string, int>> scores = player.scoreCard().CheckScore(readyDice + heldDice);
 				for (size_t i = 0; i < scores.size(); ++i)
-					//std::cout << i << ": " << ScoreCard::EnumToString((int)i) << ": " << scores[i] << "\n";
 					std::cout << i << ": " << scores[i].first << ": " << scores[i].second << "\n";
 				std::cout << "\n";
-				int index = util::inputInt("Select category to score: ");
-
-				//  MUST CHECK BOUNDS
-				playerScored = player.scoreCard().SetScore(index, scores[index].second);
+				do
+				{
+					int index = util::Input("Select category to score: ", 0, 12);
+					playerScored = player.scoreCard().SetScore(index, scores[index].second);
+					if (!playerScored)
+						std::cout << "Invalid selection, try again\n";
+				} while (playerScored == false);
 			}
 			else if (choice == 3)
 			{

@@ -3,7 +3,7 @@
 #include <assert.h>
 #include "categoryEnums.h"
 
-std::vector<std::pair<std::string, int>>  Section::CheckScores(const Dice& dice) const
+std::vector<std::pair<std::string, int>> Section::CheckScores(const Dice& dice) const
 {
 	std::vector<std::pair<std::string, int>> scoringCategories;
 
@@ -13,11 +13,15 @@ std::vector<std::pair<std::string, int>>  Section::CheckScores(const Dice& dice)
 	return scoringCategories;
 }
 
-void Section::SetScore(int index, int score)
+bool Section::SetScore(int index, int score)
 {
 	assert(index >= 0 && index < (int)categories.size());
 
+	if (categories[index]->HasScored())
+		return false;
+
 	categories[index]->SetScore(score);
+		return true;
 }
 
 std::vector<int> Section::GetScores() const

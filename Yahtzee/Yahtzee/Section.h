@@ -16,7 +16,7 @@ public:
 	int Bonus() const { return bonus; }
 	int Total() const { return total; }
 	int Size() const { return (int)categories.size(); }
-	void SetScore(int index, int score);
+	bool SetScore(int index, int score);
 
 	std::vector<std::pair<std::string, int>>  CheckScores(const Dice& dice) const;
 	std::vector<int> GetScores() const;

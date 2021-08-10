@@ -22,12 +22,9 @@ std::vector<std::pair<std::string, int>> ScoreCard::CheckScore(const Dice& dice)
 bool ScoreCard::SetScore(int index, int score)
 {
 	if (index < (int)ALL::THREEOFAKIND)
-		upper.SetScore(index, score);
+		return upper.SetScore(index, score);
 	else
-		lower.SetScore(index - (int)ALL::THREEOFAKIND, score);
-
-	//////////////  MUST FIX THIS
-	return true;
+		return lower.SetScore(index - (int)ALL::THREEOFAKIND, score);
 }
 
 std::vector<int> ScoreCard::GetScores() const
