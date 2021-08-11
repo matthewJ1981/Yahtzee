@@ -5,13 +5,13 @@
 
 #include "util.h"
 
-Player::Player(std::string n, bool c) : name(n), isComputer(c), rollable(5)
+Player::Player(std::string n, bool c) : name(n), isComputer(c), rolled(false), rollable(5)
 {}
 
 void Player::TakeTurn()
 {
 	bool playerScored = false;
-	bool rolled = false;
+	rolled = false;
 	int currentRoll = 1;
 
 	while (currentRoll <= 3 && playerScored == false)
@@ -19,6 +19,7 @@ void Player::TakeTurn()
 		std::cout << "Player: " << name << "\n";
 		std::cout << "You have " << 4 - currentRoll << " rolls remaining\n\n";
 		int choice = -1;
+
 		if (rolled)
 		{
 			std::cout << "ReadyDice: " << rollable << "\n";
@@ -43,22 +44,15 @@ void Player::TakeTurn()
 		case 1:
 			Roll();
 			++currentRoll;
-			rolled = true;
 			break;
 		case 2:
-			if (rolled)
-				Hold();
+			Hold();
 			break;
 		case 3:
-			if (rolled)
-				Unhold();
+			Unhold();
 			break;
 		case 4:
-			if (rolled)
-			{
-				playerScored = Score();
-				rolled = false;
-			}
+			playerScored = Score();
 			break;
 		case 5:
 			Print();
@@ -76,6 +70,7 @@ void Player::TakeTurn()
 int Player::Roll()
 {
 	rollable.Roll();
+	rolled = true;
 
 	int total = 0;
 	for (const auto& d : rollable)
@@ -85,6 +80,12 @@ int Player::Roll()
 
 void Player::Hold()
 {
+	if (!rolled)
+	{
+		std::cout << "You need to roll the dice first\n";
+		return;
+	}
+
 	if (!rollable.empty())
 	{
 		std::vector<int> diceToMove = GetDiceToMove(rollable);
@@ -94,6 +95,12 @@ void Player::Hold()
 
 void Player::Unhold()
 {
+	if (!rolled)
+	{
+		std::cout << "You need to roll the dice first\n";
+		return;
+	}
+
 	if (!held.empty())
 	{
 		std::vector<int> diceToMove = GetDiceToMove(held);
@@ -146,6 +153,13 @@ std::vector<int> Player::GetDiceToMove(const Dice& dice) const
 
 bool Player::Score()
 {
+	if (!rolled)
+	{
+		std::cout << "You need to roll the dice first\n";
+		return false;
+	}
+
+
 	std::cout << "\n*** Scoring options*** \n\n";
 
 	std::vector<std::pair<std::string, int>> scores = scoreCard.CheckScore(rollable + held);

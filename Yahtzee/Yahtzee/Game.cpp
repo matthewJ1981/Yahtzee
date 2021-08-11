@@ -39,7 +39,7 @@ void Game::GetStartingPlayer()
 		}
 	}
 
-	std::cout << "\n" << players[first].Name() << " goes first\n\n";
+	std::cout << "\n" << players[first].Name() << " goes first\n";
 	std::swap(players[0], players[first]);
 }
 
@@ -51,7 +51,7 @@ void Game::Go()
 
 	while (currentRound <= totalRounds)
 	{
-		std::cout << "\n** Round: " << currentRound << " **\n";
+		std::cout << "\n** Round: " << currentRound << " **\n\n";
 		for (Player player : players)
 			player.TakeTurn();
 

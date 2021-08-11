@@ -31,6 +31,7 @@ public:
 private:
 	std::string name;
 	bool isComputer;
+	bool rolled;
 	ScoreCard scoreCard;
 	Dice rollable;
 	Dice held;
