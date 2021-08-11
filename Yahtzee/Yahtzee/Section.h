@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <tuple>
-
+#include <memory>
 #include "Category.h"
 
 
@@ -25,7 +25,7 @@ public:
 	virtual int Tally() = 0;
 
 protected:
-	std::vector<Category*> categories;
+	std::vector<std::shared_ptr<Category>> categories;
 	int subtotal;
 	mutable int bonus;
 	int total;

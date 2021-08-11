@@ -37,7 +37,7 @@ std::vector<int> Section::GetScores() const
 void Section::CalcSubTotal()
 {
 	int temp = 0;
-	std::for_each(categories.begin(), categories.end(), [&](const Category* category) 
+	std::for_each(categories.begin(), categories.end(), [&](const std::shared_ptr<Category>& category) 
 		{
 			if (category->Score() > -1) temp += category->Score(); 
 		});

@@ -2,23 +2,23 @@
 
 Upper::Upper()
 {
-	categories.push_back(new Ones());
-	categories.push_back(new Twos());
-	categories.push_back(new Threes());
-	categories.push_back(new Fours());
-	categories.push_back(new Fives());
-	categories.push_back(new Sixes());
+	categories.push_back(std::make_shared<Ones>());
+	categories.push_back(std::make_shared<Twos>());
+	categories.push_back(std::make_shared<Threes>());
+	categories.push_back(std::make_shared<Fours>());
+	categories.push_back(std::make_shared<Fives>());
+	categories.push_back(std::make_shared<Sixes>());
 }
 
 Lower::Lower()
 {
-	categories.push_back(new ThreeOfKind());
-	categories.push_back(new FourOfKind());
-	categories.push_back(new FullHouse());
-	categories.push_back(new SmallStraight());
-	categories.push_back(new LargeStraight());
-	categories.push_back(new Yahtzee());
-	categories.push_back(new Chance());
+	categories.push_back(std::make_shared<ThreeOfKind>());
+	categories.push_back(std::make_shared<FourOfKind>());
+	categories.push_back(std::make_shared<FullHouse>());
+	categories.push_back(std::make_shared<SmallStraight>());
+	categories.push_back(std::make_shared<LargeStraight>());
+	categories.push_back(std::make_shared<Yahtzee>());
+	categories.push_back(std::make_shared<Chance>());
 }
 
 int Upper::Tally()
