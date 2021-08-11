@@ -34,9 +34,9 @@ TEST_F(ScoreCardTest, SetScoreTest)
 	dice[3].SetValue(6);
 	dice[4].SetValue(6);
 					    
-	scoreCard.SetScore((int)ALL::SIXES, dice);
-	scoreCard.SetScore((int)ALL::YAHTZEE, dice);
-	scoreCard.SetScore((int)ALL::LARGESTRAIGHT, dice);
+	scoreCard.SetScore((int)ALL::SIXES, 30);
+	scoreCard.SetScore((int)ALL::YAHTZEE, 30);
+	scoreCard.SetScore((int)ALL::LARGESTRAIGHT, 40);
 	
-	EXPECT_EQ(scoreCard.Tally(), 220);
+	EXPECT_EQ(scoreCard.Tally(), 100);
 }

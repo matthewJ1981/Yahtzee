@@ -27,7 +27,7 @@ protected:
 
 TEST_F(LowerCategoryTest, ConstructorTest)
 {
-	score = -1;
+	score = 0;
 	category = new ThreeOfKind();
 
 	EXPECT_EQ(category->Score(), score);

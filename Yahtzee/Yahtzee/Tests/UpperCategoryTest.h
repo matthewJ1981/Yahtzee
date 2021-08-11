@@ -7,7 +7,7 @@
 class UpperCategoryTest : public testing::Test
 {
 protected:
-	UpperCategoryTest() : dice(5) {}
+	UpperCategoryTest() : dice(5), score(0) {}
 	virtual void SetUp()
 	{
 	}
@@ -24,7 +24,7 @@ protected:
 
 TEST_F(UpperCategoryTest, ConstructorTest)
 {
-	int score = -1;
+	int score = 0;
 	category = new Ones();
 
 	EXPECT_EQ(category->Score(), score);

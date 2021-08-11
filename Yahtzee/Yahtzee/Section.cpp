@@ -11,6 +11,7 @@ Section::Section(const Section& rhs) : subtotal(rhs.subtotal), bonus(rhs.bonus),
 			categories.push_back(cat->clone());
 	}
 }
+
 Section& Section::operator= (const Section& rhs)
 {
 	if (this != &rhs)

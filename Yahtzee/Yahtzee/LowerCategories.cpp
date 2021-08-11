@@ -54,7 +54,7 @@ int FullHouse::CheckScore(const Dice& dice) const
 	{
 		if (values[i] >= 3)
 			threeKind = true;
-		if (values[i] >= 2)
+		else if (values[i] >= 2)
 			twoKind = true;
 	}
 

@@ -27,7 +27,7 @@ TEST_F(LowerSectionTest, ConstructorTest)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), 0);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligible(), false);
 }
 
 TEST_F(LowerSectionTest, SetScoreTest1)
@@ -40,7 +40,7 @@ TEST_F(LowerSectionTest, SetScoreTest1)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), 0);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligible(), false);
 }
 
 TEST_F(LowerSectionTest, SetScoreTest2)
@@ -55,7 +55,7 @@ TEST_F(LowerSectionTest, SetScoreTest2)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), 80);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), true);
+	EXPECT_EQ(lower.BonusEligible(), true);
 }
 
 TEST_F(LowerSectionTest, CalcSubTotalTest)
@@ -69,7 +69,7 @@ TEST_F(LowerSectionTest, CalcSubTotalTest)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), 0);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligible(), false);
 }
 
 TEST_F(LowerSectionTest, TallyTest)
@@ -83,7 +83,7 @@ TEST_F(LowerSectionTest, TallyTest)
 	EXPECT_EQ(lower.Bonus(), 0);
 	EXPECT_EQ(lower.Total(), score);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligible(), false);
 }
 
 TEST_F(LowerSectionTest, IncrementBonusTest)
@@ -101,5 +101,5 @@ TEST_F(LowerSectionTest, IncrementBonusTest)
 	EXPECT_EQ(lower.Bonus(), bonus);
 	EXPECT_EQ(lower.Total(), bonus + score);
 	EXPECT_EQ(lower.Size(), 7);
-	EXPECT_EQ(lower.BonusEligibile(), false);
+	EXPECT_EQ(lower.BonusEligible(), false);
 }
