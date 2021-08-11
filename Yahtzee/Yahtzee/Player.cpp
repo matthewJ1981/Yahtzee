@@ -17,11 +17,26 @@ void Player::TakeTurn()
 	while (currentRoll <= 3 && playerScored == false)
 	{
 		std::cout << "Player: " << name << "\n";
-		std::cout << "You have " << 4 - currentRoll << " rolls remainning\n\n";
-		std::cout << "ReadyDice: " << rollable << "\n";
-		std::cout << "HeldDice: " << held << "\n\n";
+		std::cout << "You have " << 4 - currentRoll << " rolls remaining\n\n";
+		int choice = -1;
+		if (rolled)
+		{
+			std::cout << "ReadyDice: " << rollable << "\n";
+			std::cout << "HeldDice: " << held << "\n\n";
 
-		int choice = util::Input("Roll(1), Hold(2), UnHold(3) Score(4), Show scorecard(5): ", 1, 5);
+			choice = util::Input("Roll(1), Hold(2), UnHold(3) Score(4), Show scorecard(5), Quit(6): ", 1, 6);
+		}
+		else
+		{
+			choice = util::Input("Roll(1), Show scorecard(2), Quit(3): ", 1, 3);
+			if (choice == 2)
+				choice = 5;
+			if (choice == 3)
+				choice = 6;
+		}
+
+		if (currentRoll == 3 && choice != 4)
+			choice = 4;
 
 		switch (choice)
 		{
@@ -47,6 +62,9 @@ void Player::TakeTurn()
 			break;
 		case 5:
 			Print();
+			break;
+		case 6:
+			std::cout << "Need to implement\n";
 			break;
 		default:
 			throw std::runtime_error("Not supposed to get here");
