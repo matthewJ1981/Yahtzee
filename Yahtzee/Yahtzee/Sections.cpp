@@ -2,23 +2,23 @@
 
 Upper::Upper()
 {
-	categories.push_back(std::make_shared<Ones>());
-	categories.push_back(std::make_shared<Twos>());
-	categories.push_back(std::make_shared<Threes>());
-	categories.push_back(std::make_shared<Fours>());
-	categories.push_back(std::make_shared<Fives>());
-	categories.push_back(std::make_shared<Sixes>());
+	categories.push_back(std::make_unique<Ones>());
+	categories.push_back(std::make_unique<Twos>());
+	categories.push_back(std::make_unique<Threes>());
+	categories.push_back(std::make_unique<Fours>());
+	categories.push_back(std::make_unique<Fives>());
+	categories.push_back(std::make_unique<Sixes>());
 }
 
 Lower::Lower()
 {
-	categories.push_back(std::make_shared<ThreeOfKind>());
-	categories.push_back(std::make_shared<FourOfKind>());
-	categories.push_back(std::make_shared<FullHouse>());
-	categories.push_back(std::make_shared<SmallStraight>());
-	categories.push_back(std::make_shared<LargeStraight>());
-	categories.push_back(std::make_shared<Yahtzee>());
-	categories.push_back(std::make_shared<Chance>());
+	categories.push_back(std::make_unique<ThreeOfKind>());
+	categories.push_back(std::make_unique<FourOfKind>());
+	categories.push_back(std::make_unique<FullHouse>());
+	categories.push_back(std::make_unique<SmallStraight>());
+	categories.push_back(std::make_unique<LargeStraight>());
+	categories.push_back(std::make_unique<Yahtzee>());
+	categories.push_back(std::make_unique<Chance>());
 }
 
 int Upper::Tally()

@@ -17,7 +17,7 @@ void Game::GetPlayers()
 	{
 		std::string name = util::input("Enter player " + std::to_string(i + 1) + "'s name: ");
 		bool isComputer = util::Input("Is " + name + " a computer? ") == 'Y';
-		players.push_back({ name, isComputer });
+		players.emplace_back( name, isComputer );
 	}
 }
 
@@ -40,7 +40,7 @@ void Game::GetStartingPlayer()
 	}
 
 	std::cout << "\n" << players[first].Name() << " goes first\n";
-	std::swap(players[0], players[first]);
+	//std::swap(players[0], players[first]);
 }
 
 void Game::Go()

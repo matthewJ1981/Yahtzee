@@ -25,7 +25,7 @@ public:
 	virtual int Tally() = 0;
 
 protected:
-	std::vector<std::shared_ptr<Category>> categories;
+	std::vector<std::unique_ptr<Category>> categories;
 	int subtotal;
 	mutable int bonus;
 	int total;
