@@ -47,18 +47,6 @@ Dice Dice::operator+(const Dice& rhs) const
 	return d;
 }
 
-
-//const std::vector<int> Dice::Values() const
-//{
-//	std::vector<int> values;
-//
-//	for (const Die& d : dice)
-//		values.push_back(d.Value());
-//
-//	return values;
-//}
-//
-//
 std::ostream& operator<<(std::ostream& out, const Dice& d)
 {
 	for (const Die& d : d.dice)

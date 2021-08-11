@@ -17,7 +17,7 @@ bool Section::SetScore(int index, int score)
 {
 	assert(index >= 0 && index < (int)categories.size());
 
-	if (categories[index]->HasScored())
+	if (categories[index]->Scored())
 		return false;
 
 	categories[index]->SetScore(score);

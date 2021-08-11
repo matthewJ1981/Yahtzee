@@ -34,6 +34,7 @@ public:
 		}
 	}
 
+	friend std::ostream& operator << (std::ostream& out, const ScoreCard& scoreCard);
 private:
 	Upper upper;
 	Lower lower;

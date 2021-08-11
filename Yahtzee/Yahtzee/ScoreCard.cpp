@@ -43,3 +43,12 @@ int ScoreCard::Tally()
 {
 	return upper.Tally() + lower.Tally();
 }
+
+std::ostream& operator << (std::ostream& out, const ScoreCard& scoreCard)
+{
+	out << scoreCard.upper << "\n" << scoreCard.lower << "\n";
+	out << "TOTAL - UPPER: " << scoreCard.upper.Total() << "\n";
+	out << "GRAND TOTAL: " << scoreCard.upper.Total() + scoreCard.lower.Total();
+
+	return out;
+}

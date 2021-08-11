@@ -12,7 +12,6 @@ public:
 	void Go();
 
 private:
-	void Turn(Player& player);
 	void GetWinner();
 	void GetPlayers();
 	void GetStartingPlayer();

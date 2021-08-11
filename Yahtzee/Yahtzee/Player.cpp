@@ -5,36 +5,81 @@
 
 #include "util.h"
 
-Player::Player(std::string n, bool c) : name(n), isComputer(c)
+Player::Player(std::string n, bool c) : name(n), isComputer(c), rollable(5)
 {}
 
-//std::vector<int> Player::CheckScore(const Dice& dice) const
-//{
-//	return scoreCard.CheckScore(dice);
-//}
-
-void Player::RollDice(Dice& dice) const
+void Player::TakeTurn()
 {
-	dice.Roll();
-}
+	bool playerScored = false;
+	bool rolled = false;
+	int currentRoll = 1;
 
-void Player::HoldOrReady(Dice& readyDice, Dice& heldDice)
-{
-	if (!heldDice.empty())
+	while (currentRoll <= 3 && playerScored == false)
 	{
-		if (util::inputBool("Would you like to unhold any dice?"))
+		std::cout << "Player: " << name << "\n";
+		std::cout << "You have " << 4 - currentRoll << " rolls remainning\n\n";
+		std::cout << "ReadyDice: " << rollable << "\n";
+		std::cout << "HeldDice: " << held << "\n\n";
+
+		int choice = util::Input("Roll(1), Hold(2), UnHold(3) Score(4), Show scorecard(5): ", 1, 5);
+
+		switch (choice)
 		{
-			std::vector<int> diceToMove = GetDiceToMove(heldDice);
-			UnholdDice(heldDice, readyDice, diceToMove);
+		case 1:
+			Roll();
+			++currentRoll;
+			rolled = true;
+			break;
+		case 2:
+			if (rolled)
+				Hold();
+			break;
+		case 3:
+			if (rolled)
+				Unhold();
+			break;
+		case 4:
+			if (rolled)
+			{
+				playerScored = Score();
+				rolled = false;
+			}
+			break;
+		case 5:
+			Print();
+			break;
+		default:
+			throw std::runtime_error("Not supposed to get here");
+			break;
 		}
 	}
-	if (!readyDice.empty())
+}
+
+int Player::Roll()
+{
+	rollable.Roll();
+
+	int total = 0;
+	for (const auto& d : rollable)
+		total += d.Value();
+	return total;
+}
+
+void Player::Hold()
+{
+	if (!rollable.empty())
 	{
-		if (util::inputBool("Would you like to hold any dice?"))
-		{
-			std::vector<int> diceToMove = GetDiceToMove(readyDice);
-			HoldDice(readyDice, heldDice, diceToMove);
-		}
+		std::vector<int> diceToMove = GetDiceToMove(rollable);
+		MoveDice(rollable, held, diceToMove);
+	}
+}
+
+void Player::Unhold()
+{
+	if (!held.empty())
+	{
+		std::vector<int> diceToMove = GetDiceToMove(held);
+		MoveDice(held, rollable, diceToMove);
 	}
 }
 
@@ -42,13 +87,12 @@ std::vector<int> Player::GetDiceToMove(const Dice& dice) const
 {
 	std::vector<int> diceToMove;
 
-	std::string msg = "Select which dice to move: ";
+	std::string msg = "Select which dice to move: \n";
 	for (size_t i = 0; i < dice.size(); ++i)
 	{
-		msg += std::to_string(dice[int(i)].Value()) + " (" + std::to_string(int(i)) + ")";
-		if (i < dice.size() - 1)
-			msg += " ";
+		msg += std::to_string(dice[int(i)].Value()) + " (" + std::to_string(int(i)) + ")\n";
 	}
+	msg += "\n";
 
 	bool inputting = true;
 	while (inputting)
@@ -57,7 +101,6 @@ std::vector<int> Player::GetDiceToMove(const Dice& dice) const
 		std::string input = util::input(msg);
 		std::istringstream ss(input);
 
-		
 		int diceNum = -1;
 		while (ss >> diceNum)
 		{
@@ -83,69 +126,52 @@ std::vector<int> Player::GetDiceToMove(const Dice& dice) const
 	return diceToMove;
 }
 
-//int Player::Tally()
-//{
-//	return scoreCard.Tally();
-//}
-//
-//std::vector<int> Player::GetScores()
-//{
-//	return scoreCard.GetScores();
-//}
-
-void Player::HoldDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
+bool Player::Score()
 {
-	for (size_t i = 0; i < diceToMove.size(); ++i)
+	std::cout << "\n*** Scoring options*** \n\n";
+
+	std::vector<std::pair<std::string, int>> scores = scoreCard.CheckScore(rollable + held);
+
+	for (size_t i = 0; i < scores.size(); ++i)
+		if (scores[i].second != Category::Unscorable())
+			std::cout << i << ": " << scores[i].first << ": " << scores[i].second << "\n";
+	std::cout << "\n";
+
+	bool playerScored = false;
+	do
 	{
-		dice1[diceToMove[i]].SetHeld(true);
-	}
+		int index = util::Input("Select category to score: ", 0, 12);
+		playerScored = scoreCard.SetScore(index, scores[index].second);
+		if (!playerScored)
+			std::cout << "Category already scored, try again\n\n";
+	} while (playerScored == false);
 
-	for (size_t i = 0; i < dice1.size(); ++i)
-		if (dice1[i].IsHeld())
-			dice2.AddDice(dice1[i]);
+	//FIX - Give option to change mind
+	return true;
+}
 
+void Player::MoveDice(Dice& lhs, Dice& rhs, std::vector<int>& indices)
+{
+	if (lhs.empty())
+		return;
 
-	for (size_t i = 0; i < dice1.size(); ++i)
+	for (size_t i = 0; i < indices.size(); ++i)
 	{
-		if (dice1[i].IsHeld())
-		{
-			dice1.RemoveDice(i);
-			--i;
-		}
+		int adjustedIndex = indices[i] - i;
+		rhs.AddDice(lhs[adjustedIndex]);
+		lhs.RemoveDice(adjustedIndex);
 	}
 }
 
-void Player::UnholdDice(Dice& dice1, Dice& dice2, std::vector<int> diceToMove)
+void Player::Print()
 {
-	for (size_t i = 0; i < diceToMove.size(); ++i)
-	{
-		dice1[diceToMove[i]].SetHeld(false);
-	}
-
-	for (size_t i = 0; i < dice1.size(); ++i)
-		if (!dice1[i].IsHeld())
-			dice2.AddDice(dice1[i]);
-
-
-	for (size_t i = 0; i < dice1.size(); ++i)
-	{
-		if (!dice1[i].IsHeld())
-		{
-			dice1.RemoveDice(i);
-			--i;
-		}
-	}
+	std::cout << "Name: " << name << "\n";
+	std::cout << scoreCard << "\n\n";
 }
-
-//bool Player::SetScore(int index, int score)
-//{
-//	scoreCard.SetScore(index, score);
-//	return true;
-//}
 
 std::ostream& operator<<(std::ostream& out, Player& player)
 {
-	out << "Name: " << player.name << " Score: " << player.scoreCard().Tally();
+	out << "Name: " << player.name << " Score: " << player.scoreCard.Tally();
 	
 	return out;
 }

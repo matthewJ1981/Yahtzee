@@ -11,6 +11,7 @@ public:
 	Upper();
 
 	int Tally() override;
+	friend std::ostream& operator << (std::ostream& out, const Upper& upper);
 private:
 	static constexpr int BONUSTHRESHOLD = 63;
 	static constexpr int BONUSVALUE = 35;
@@ -29,7 +30,7 @@ public:
 	void SetHasYahtzee(bool b) const { yahtzee = b; }
 
 	static int BonusValue() { return BONUSVALUE; }
-
+	friend std::ostream& operator << (std::ostream& out, const Lower& lower);
 private:
 	mutable bool yahtzee = false;
 	static constexpr int BONUSVALUE = 100;

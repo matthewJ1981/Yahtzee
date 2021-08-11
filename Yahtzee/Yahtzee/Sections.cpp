@@ -49,7 +49,7 @@ std::vector<std::pair<std::string, int>> Lower::CheckScores(const Dice& dice, co
 	SetHasYahtzee(scores[(int)LOWER::YAHTZEE].second == Yahtzee::ScoreValue());
 
 	//Set yahtzee category as unscorable if it has already been scored
-	if (categories[(int)LOWER::YAHTZEE]->HasScored())
+	if (categories[(int)LOWER::YAHTZEE]->Scored())
 	{
 		scores[(int)LOWER::YAHTZEE].second = Category::Unscorable();
 	}
@@ -65,7 +65,7 @@ std::vector<std::pair<std::string, int>> Lower::CheckScores(const Dice& dice, co
 		}
 
 		//Force scoring of upper section or allow options of lower per joker rules
-		if (categories[(int)LOWER::YAHTZEE]->HasScored())
+		if (categories[(int)LOWER::YAHTZEE]->Scored())
 		{
 			//Value of first dice - 1(They are currently all the same value) 
 			//to access the index of the appropriate upper category
@@ -98,4 +98,30 @@ std::vector<std::pair<std::string, int>> Lower::CheckScores(const Dice& dice, co
 	}
 
 	return scores;
+}
+
+std::ostream& operator<<(std::ostream& out, const Upper& upper)
+{
+	out << "UPPER SECTION\n\n";
+	for (const auto& cat : upper.categories)
+		out << *cat << "\n";
+
+	out << "TOTAL SCORE: " << upper.total << "\n";
+	out << "Bonus: " << upper.bonus << "\n";
+	out << "TOTAL: " << upper.total;
+
+	return out;
+
+}
+
+std::ostream& operator<<(std::ostream& out, const Lower& lower)
+{
+	out << "LOWER SECTION\n\n";
+	for (const auto& cat : lower.categories)
+		out << *cat << "\n";
+
+	out << "BONUS: " << lower.bonus << "\n";
+	out << "TOTAL - LOWER: " << lower.total;
+
+	return out;
 }

@@ -50,7 +50,7 @@ int FourOfKind::CheckScore(const Dice& dice) const
 
 int FullHouse::CheckScore(const Dice& dice) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	bool twoKind = false;
@@ -76,7 +76,7 @@ int FullHouse::CheckScore(const Dice& dice) const
 
 int SmallStraight::CheckScore(const Dice& dice) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	if (StraightScore(dice, 4))
@@ -87,7 +87,7 @@ int SmallStraight::CheckScore(const Dice& dice) const
 
 int LargeStraight::CheckScore(const Dice& dice) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	if (StraightScore(dice, 5))
@@ -108,7 +108,7 @@ int Yahtzee::CheckScore(const Dice& dice) const
 
 int Chance::CheckScore(const Dice& dice) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	int temp = 0;

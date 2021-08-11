@@ -17,8 +17,6 @@ public:
 	bool empty() const { return dice.size() == 0; }
 	Die& operator[](int i){ return dice[i]; }
 	const Die& operator[](int i) const { return dice[i]; }
-	//const std::vector<int> Values() const;
-	//std::vector<Die> GetDice() const { return dice; }
 	void Clear();
 	void Reset();
 	Dice operator+(const Dice& rhs) const;

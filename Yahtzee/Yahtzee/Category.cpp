@@ -1,15 +1,17 @@
 #include "Category.h"
 #include <algorithm>
+#include <iomanip>
 
 Category::Category(std::string n) 
 	:
-	score(-1),
-	name(n) 
+	score(0),
+	scored(false),
+	name(n)
 {}
 
 int Category::UpperCheckScore(const Dice& dice, int value) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	int newScore = 0;
@@ -21,7 +23,7 @@ int Category::UpperCheckScore(const Dice& dice, int value) const
 
 int Category::KindScore(const Dice& dice, int numSame) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	int newScore = 0;
@@ -42,7 +44,7 @@ int Category::KindScore(const Dice& dice, int numSame) const
 
 bool Category::StraightScore(const Dice& dice, int numConsec) const
 {
-	if (HasScored())
+	if (Scored())
 		return UNSCORABLE;
 
 	int numConsecutive = 0;
@@ -66,4 +68,10 @@ bool Category::StraightScore(const Dice& dice, int numConsec) const
 	}
 
 	return maxConsecutive >= numConsec;
+}
+
+std::ostream& operator << (std::ostream& out, const Category& cat)
+{
+	out << std::setw(15) << std::left << cat.name << std::setw(8) << std::right << cat.score;
+	return out;
 }
