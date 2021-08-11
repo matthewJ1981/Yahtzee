@@ -16,6 +16,8 @@ void Game::GetPlayers()
 	for (int i = 0; i < numPlayers; ++i)
 	{
 		std::string name = util::input("Enter player " + std::to_string(i + 1) + "'s name: ");
+
+		//  NEED TO IMPLEMENT COMPUTER
 		bool isComputer = util::Input("Is " + name + " a computer? ") == 'Y';
 		players.emplace_back( name, isComputer );
 	}
@@ -40,7 +42,7 @@ void Game::GetStartingPlayer()
 	}
 
 	std::cout << "\n" << players[first].Name() << " goes first\n";
-	//std::swap(players[0], players[first]);
+	std::swap(players[0], players[first]);
 }
 
 void Game::Go()
@@ -52,7 +54,7 @@ void Game::Go()
 	while (currentRound <= totalRounds)
 	{
 		std::cout << "\n** Round: " << currentRound << " **\n\n";
-		for (Player player : players)
+		for (Player& player : players)
 			player.TakeTurn();
 
 		++currentRound;

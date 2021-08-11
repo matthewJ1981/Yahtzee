@@ -8,45 +8,35 @@ ThreeOfKind::ThreeOfKind()
 	Category("Three of a kind")
 {}
 
-FourOfKind::FourOfKind()
-	:
-	Category("Four of a kind")
-{}
-
-FullHouse::FullHouse()
-	:
-	Category("Full house")
-{}
-
-SmallStraight::SmallStraight()
-	:
-	Category("Small straight")
-{}
-
-LargeStraight::LargeStraight()
-	:
-	Category("Large straight")
-{}
-
-Yahtzee::Yahtzee()
-	:
-	Category("Yahtzee")
-{}
-
-Chance::Chance()
-	:
-	Category("Chance")
-{}
-
 int ThreeOfKind::CheckScore(const Dice& dice) const
 {
 	return KindScore(dice, 3);
 }
 
+std::unique_ptr<Category> ThreeOfKind::clone() const
+{
+	return std::make_unique<ThreeOfKind>();
+}
+
+FourOfKind::FourOfKind()
+	:
+	Category("Four of a kind")
+{}
+
 int FourOfKind::CheckScore(const Dice& dice) const
 {
 	return KindScore(dice, 4);
 }
+
+std::unique_ptr<Category> FourOfKind::clone() const
+{
+	return std::make_unique<FourOfKind>();
+}
+
+FullHouse::FullHouse()
+	:
+	Category("Full house")
+{}
 
 int FullHouse::CheckScore(const Dice& dice) const
 {
@@ -74,6 +64,16 @@ int FullHouse::CheckScore(const Dice& dice) const
 		return 0;
 }
 
+std::unique_ptr<Category> FullHouse::clone() const
+{
+	return std::make_unique<FullHouse>();
+}
+
+SmallStraight::SmallStraight()
+	:
+	Category("Small straight")
+{}
+
 int SmallStraight::CheckScore(const Dice& dice) const
 {
 	if (Scored())
@@ -84,6 +84,16 @@ int SmallStraight::CheckScore(const Dice& dice) const
 
 	return 0;
 }
+
+std::unique_ptr<Category> SmallStraight::clone() const
+{
+	return std::make_unique<SmallStraight>();
+}
+
+LargeStraight::LargeStraight()
+	:
+	Category("Large straight")
+{}
 
 int LargeStraight::CheckScore(const Dice& dice) const
 {
@@ -96,6 +106,16 @@ int LargeStraight::CheckScore(const Dice& dice) const
 	return 0;
 }
 
+std::unique_ptr<Category> LargeStraight::clone() const
+{
+	return std::make_unique<LargeStraight>();
+}
+
+Yahtzee::Yahtzee()
+	:
+	Category("Yahtzee")
+{}
+
 int Yahtzee::CheckScore(const Dice& dice) const
 {
 	int value = dice[0].Value();
@@ -105,6 +125,16 @@ int Yahtzee::CheckScore(const Dice& dice) const
 
 	return 50;
 }
+
+std::unique_ptr<Category> Yahtzee::clone() const
+{
+	return std::make_unique<Yahtzee>();
+}
+
+Chance::Chance()
+	:
+	Category("Chance")
+{}
 
 int Chance::CheckScore(const Dice& dice) const
 {
@@ -116,4 +146,9 @@ int Chance::CheckScore(const Dice& dice) const
 		temp += d.Value();
 
 	return temp;
+}
+
+std::unique_ptr<Category> Chance::clone() const
+{
+	return std::make_unique<Chance>();
 }

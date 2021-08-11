@@ -10,7 +10,6 @@ class Player
 {
 public:
 	Player(std::string n, bool c);
-
 	void TakeTurn();
 	void MoveDice(Dice& lhs, Dice& rhs, std::vector<int>& indices);
 

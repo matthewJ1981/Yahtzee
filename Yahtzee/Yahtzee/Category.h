@@ -3,6 +3,7 @@
 #include <string>
 #include "Dice.h"
 #include <iostream>
+#include <memory>
 
 class Category
 {
@@ -11,7 +12,7 @@ public:
 	virtual ~Category() {}
 	
 	virtual int CheckScore(const Dice& dice) const = 0;
-
+	virtual std::unique_ptr<Category> clone() const = 0;
 	inline void SetScore(int s) { score = s; scored = true; }
 	inline int Score() const { return score; }
 	inline bool Scored() const { return scored; }

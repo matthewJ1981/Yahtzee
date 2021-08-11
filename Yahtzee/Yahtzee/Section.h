@@ -5,12 +5,13 @@
 #include <memory>
 #include "Category.h"
 
-
 class Section
 {
 public:
 	Section() : subtotal(0), bonus(0), total(0) {}
 	virtual ~Section() {};
+	Section(const Section& rhs);
+	Section& operator= (const Section& rhs);
 
 	int SubTotal() const { return subtotal; }
 	int Bonus() const { return bonus; }

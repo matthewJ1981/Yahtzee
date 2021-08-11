@@ -3,6 +3,28 @@
 #include <assert.h>
 #include "categoryEnums.h"
 
+Section::Section(const Section& rhs) : subtotal(rhs.subtotal), bonus(rhs.bonus), total(rhs.total)
+{
+	if (this != &rhs)
+	{
+		for (auto& cat : rhs.categories)
+			categories.push_back(cat->clone());
+	}
+}
+Section& Section::operator= (const Section& rhs)
+{
+	if (this != &rhs)
+	{
+		subtotal = rhs.subtotal;
+		bonus = rhs.bonus;
+		total = rhs.total;
+		categories.clear();
+		for (auto& cat : rhs.categories)
+			categories.push_back(cat->clone());
+	}
+	return *this;
+}
+
 std::vector<std::pair<std::string, int>> Section::CheckScores(const Dice& dice) const
 {
 	std::vector<std::pair<std::string, int>> scoringCategories;
