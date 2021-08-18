@@ -14,11 +14,15 @@ void Player::TakeTurn()
 	rolled = false;
 	int currentRoll = 1;
 
+	rollable.Reset();
+	held.Clear();
+
 	while (currentRoll <= 3 && playerScored == false)
 	{
 		std::cout << "Player: " << name << "\n";
 		std::cout << "You have " << 4 - currentRoll << " rolls remaining\n\n";
 		int choice = -1;
+
 
 		if (rolled)
 		{

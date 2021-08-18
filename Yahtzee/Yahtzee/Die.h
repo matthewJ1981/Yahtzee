@@ -5,7 +5,7 @@
 class Die
 {
 public:
-	Die(int sides = 6, int val = 1) : sides(sides), value(val), isHeld(false) {}
+	Die(int sides = 6, int val = 1) : sides(sides), value(val), isHeld(false) { Roll(); }
 
 	void Roll();
 
