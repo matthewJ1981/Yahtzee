@@ -17,8 +17,8 @@ public:
 	bool empty() const { return dice.size() == 0; }
 	Die& operator[](int i){ return dice[i]; }
 	const Die& operator[](int i) const { return dice[i]; }
-	void Clear();
-	void Reset();
+	//void Clear();
+	//void Reset();
 	Dice operator+(const Dice& rhs) const;
 
 	auto begin() { return dice.begin(); }

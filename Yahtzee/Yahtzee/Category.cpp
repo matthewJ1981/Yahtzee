@@ -44,8 +44,8 @@ int Category::KindScore(const Dice& dice, int numSame) const
 
 bool Category::StraightScore(const Dice& dice, int numConsec) const
 {
-	if (Scored())
-		return UNSCORABLE;
+	//if (Scored())
+	//	return UNSCORABLE;
 
 	int numConsecutive = 0;
 	int maxConsecutive = 0;
