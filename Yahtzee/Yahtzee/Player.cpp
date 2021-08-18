@@ -14,9 +14,6 @@ void Player::TakeTurn()
 	rolled = false;
 	int currentRoll = 1;
 
-	rollable.Reset();
-	held.Clear();
-
 	while (currentRoll <= 3 && playerScored == false)
 	{
 		std::cout << "Player: " << name << "\n";
@@ -182,6 +179,8 @@ bool Player::Score()
 			std::cout << "Category already scored, try again\n\n";
 	} while (playerScored == false);
 
+	rollable = rollable + held;
+	held.Clear();
 	//FIX - Give option to change mind
 	return true;
 }

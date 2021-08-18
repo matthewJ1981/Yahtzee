@@ -29,14 +29,14 @@ void Dice::Clear()
 {
 	dice.clear();
 }
-
-void Dice::Reset()
-{
-	Clear();
-
-	for (int i = 0; i < defaultSize; ++i)
-		dice.push_back(Die());
-}
+//
+//void Dice::Reset()
+//{
+//	Clear();
+//
+//	for (int i = 0; i < defaultSize; ++i)
+//		dice.push_back(Die());
+//}
 
 Dice Dice::operator+(const Dice& rhs) const
 {
